@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/google-gemini/gemini-cli/main/schemas/settings.schema.json",
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": ["bunx", "@upstash/context7-mcp"],
+      "enabled": true
+    }
+  }
+}
