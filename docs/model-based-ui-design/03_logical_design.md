@@ -6,14 +6,14 @@
 
 ### 画面構成要素 (ワイヤーフレーム定義)
 
-#### 1. 入力画面 (Pattern Selection Screen)
-アプリのトップページ。12個のパターンから正しいものを間違いなく選ばせるためのリスト画面。
+#### 1. 入力画面 (Appraisal Pattern Selection Screen)
+アプリのトップページ。12個の鑑定パターンから正しいものを間違いなく選ばせるためのリスト画面。
 
 *   **Header**: アプリタイトル。
 *   **Instruction**: 「鑑定結果（エネルギーが落ちる年）を選択してください」等のガイド文。
-*   **Pattern List (Grid/List)**: 1〜12のパターンを選択するカード型リスト。
+*   **Appraisal Pattern List (Grid/List)**: 1〜12の鑑定パターンを選択するカード型リスト。
     *   **各カードの表示内容**:
-        *   **パターン番号**: 大きく表示（視認性確保）。
+        *   **鑑定パターン番号**: 大きく表示（視認性確保）。
         *   **エネルギーが落ちる年**: 判定のキーとなる情報（例：「子・丑 (-)、天中殺」など）。最も重要。
         *   **主要な色**: 識別しやすいよう、タブー色などをアイコン的に表示してもよい。
     *   **Interaction**: カードをタップすると即座にプレビュー画面へ遷移する（または選択→次へボタン）。
@@ -58,7 +58,7 @@
 ### 画面遷移図
 
 `[ Selection Screen ]`
-   | (Tap Pattern Card)
+   | (Tap Appraisal Pattern Card)
    v
 `[ Preview Screen ]`
    | (Tap Print Button -> System Print Dialog)
