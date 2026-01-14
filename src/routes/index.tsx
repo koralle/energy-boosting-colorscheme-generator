@@ -4,7 +4,7 @@ export const Route = createFileRoute("/")({
   component: RouteComponent,
 });
 
-function RouteComponent () {
+function RouteComponent() {
   return (
     <div>
       <p>OK</p>

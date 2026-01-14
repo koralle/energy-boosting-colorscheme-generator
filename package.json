@@ -13,7 +13,11 @@
     "check": "biome check",
     "check:fix": "biome check --fix",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@tanstack/react-router": "^1.149.3",
@@ -42,11 +46,12 @@
     "@vitejs/plugin-react": "^5.1.2",
     "@vitest/browser-playwright": "^4.0.17",
     "@vitest/coverage-v8": "^4.0.17",
+    "@vitest/ui": "^4.0.17",
     "playwright": "^1.57.0",
     "storybook": "^10.1.11",
-    "tailwindcss": "^4.1.13",
     "vite": "^7.1.7",
     "vitest": "^4.0.17",
+    "vitest-browser-react": "^2.0.2",
     "wrangler": "^4.58.0"
   }
 }

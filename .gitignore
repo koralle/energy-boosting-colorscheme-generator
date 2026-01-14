@@ -22,3 +22,4 @@ worker-configuration.d.ts
 
 *storybook.log
 storybook-static
+src/routeTree.gen.ts

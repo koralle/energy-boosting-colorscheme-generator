@@ -10,7 +10,9 @@
     "includes": [
       // TypeScript
       "app/**/*.{ts,tsx}",
+      "src/**/*.{ts,tsx}",
       "vite.config.ts",
+      "vitest.config.ts",
       "react-router.config.ts",
       "worker-configuration.d.ts",
       "workers/app.ts",
