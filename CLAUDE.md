@@ -30,11 +30,12 @@ npm run cf-typegen
 
 ## アーキテクチャ
 
-### React Router v7 + Cloudflare Pages
+### TanStack Router + Cloudflare Pages
 
-- **SSR**: 有効 (`react-router.config.ts`)
-- **ルーティング**: `app/routes.ts` でファイルベースルーティングを定義
-- **Cloudflare統合**: `workers/app.ts` がエントリーポイントで、`context.cloudflare.env`/`context.cloudflare.ctx` 経由でCloudflare環境にアクセス
+- **ルーター**: TanStack Router (ファイルベースルーティング)
+- **SSR**: 有効（TanStack Start）
+- **ルーティング**: `src/routes/` ディレクトリでファイルベースルーティング
+- **Cloudflare統合**: `wrangler.jsonc` で `main: "@tanstack/react-start/server-entry"` を指定
 
 ### TypeScript設定
 
@@ -45,23 +46,24 @@ npm run cf-typegen
 ### ルート構造
 
 ```
-app/
-├── routes.ts          # ルーティング設定
-├── root.tsx           # ルートレイアウト
-├── entry.server.tsx   # SSR エントリーポイント
+src/
+├── router.tsx          # ルーター設定
+├── routeTree.gen.ts    # 自動生成されるルートツリー（編集不要）
 └── routes/
-    └── home.tsx       # ページコンポーネント
+    ├── __root.tsx      # ルートレイアウト
+    └── index.tsx       # ページコンポーネント
 ```
 
 ### 重要な設定ファイル
 
-- `wrangler.jsonc`: Cloudflare Workers/Pages の設定（環境変数 `vars` をここで定義）
+- `vite.config.ts`: TanStack Startプラグインの設定（`srcDirectory: "./src"`, `routesDirectory: "./routes"`）
+- `wrangler.jsonc`: Cloudflare Workers/Pages の設定（`main: "@tanstack/react-start/server-entry"`、環境変数 `vars` をここで定義）
 - `biome.jsonc`: リンター/フォーマッター設定（インデント:スペース2、行幅:100）
 
 ### ルートの型定義
 
-React Router v7 では各ルートファイルに対応する型ファイルが自動生成されます:
-- `app/routes/home.tsx` → `app/routes/+types/home.ts`
+TanStack Router では `routeTree.gen.ts` が自動生成され、ルート全体の型定義が提供されます。
+各ルートファイルで `Route` コンポーネントを使用し、型安全なルーティングが可能です。
 
 ## 環境変数
 
