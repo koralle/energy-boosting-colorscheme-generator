@@ -1,11 +1,12 @@
 {
   "extends": "@tsconfig/strictest/tsconfig.json",
   "include": [
-    ".react-router/types/**/*",
-    "app/**/*",
-    "app/**/.server/**/*",
-    "app/**/.client/**/*",
-    "workers/**/*",
+    ".react-router/types/**/*.ts",
+    ".react-router/types/**/*.tsx",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "workers/**/*.ts",
+    "workers/**/*.tsx",
     "worker-configuration.d.ts"
   ],
   "compilerOptions": {
@@ -18,6 +19,8 @@
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "noEmit": true
+    "noEmit": true,
+    "exactOptionalPropertyTypes": false,
+    "rootDirs": [".", "./.react-router/types"]
   }
 }
