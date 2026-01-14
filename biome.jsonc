@@ -9,7 +9,6 @@
   "files": {
     "includes": [
       // TypeScript
-      "app/**/*.{ts,tsx}",
       "src/**/*.{ts,tsx}",
       "vite.config.ts",
       "vitest.config.ts",
@@ -64,6 +63,19 @@
           "suspicious": {
             "noExplicitAny": "off",
             "noConfusingVoidType": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["src/routeTree.gen.ts"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedImports": "off"
+          },
+          "suspicious": {
+            "noExplicitAny": "off"
           }
         }
       }
