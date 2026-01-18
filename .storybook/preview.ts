@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react-vite'
+import "kiso.css";
 
 const preview: Preview = {
   parameters: {
