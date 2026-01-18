@@ -39,7 +39,7 @@ export default defineConfig({
   outdir: "styled-system",
 
   // Global CSS
-  cssVarsRoot: ":where(:where, :where, :where))",
+  cssVarsRoot: ":where(:where, :where, :where)",
   globalCss: {
     body: {
       bg: "white",
