@@ -35,7 +35,10 @@
 ## 技術スタック
 
 - TypeScript + React (TanStack Router)
-- kiso.css v1.2.3
+- kiso.css v1.2.3 (ベーススタイリング)
+- Panda CSS (コンポーネントスタイリング・デザイントークン)
+- lucide-react (アイコン)
+- Valibot (バリデーション・型定義)
 - Bun
 - Cloudflare Workers
 - Vitest (テスト)
@@ -46,9 +49,15 @@
 2. **プレビュー画面**: A4鑑定書の印刷プレビュー
 3. **完了画面**: 印刷完了メッセージ
 
-## 実装タスク（全24タスク、6時間20分）
+## 実装タスク（全25タスク、7時間45分）
 
-### フェーズ1: 準備・基礎構築（6タスク）
+### フェーズ1: 準備・基礎構築（7タスク）
+
+#### T1-0: Panda CSSセットアップ - 30分
+- `panda init` 実行、設定ファイル作成
+- 実装計画に基づくカラーパレットのトークン定義（`theme.tokens.colors`）
+- CSSレイヤー設定（`@layer base { @import "kiso.css"; }`）
+- `styled-system` ディレクトリをBiomeの対象外に設定
 
 #### T1-1: TypeScript型定義（基本） - 15分
 - `AppraisalPattern`, `EnergyUpColor`, `TabooColor`, `InteriorAdvice` 定義
@@ -67,7 +76,8 @@
 - インテリアアドバイス（12パターン）
 
 #### T1-5: 色コード定義 - 15分
-- 各色名のHexコード定義（14色）
+- 各色名のHexコードを `panda.config.ts` のトークンとして実装
+- 型定義を生成（`panda codegen`）
 - 印刷用カラーパレット作成
 
 #### T1-6: ルーティング構築 - 15分
@@ -83,7 +93,8 @@
 - 各カード: パターン番号、エネルギーが落ちる年、主要な色の表示
 
 #### T2-2: 入力画面スタイリング - 15分
-- カードデザイン、ホバー効果、タッチサイズ確保
+- Panda CSSの `css()` 関数や `Stack`, `Grid` パターンを使用したカードデザイン
+- ホバー効果、タッチサイズ確保
 - 色見本の表示（八角形アイコンなど）
 
 #### T2-3: 入力画面レスポンシブ - 30分
@@ -96,7 +107,8 @@
 - 戻るボタン、A4プレビューエリア、印刷ボタン配置
 
 #### T2-6: プレビュー画面スタイリング - 15分
-- ボタンデザイン、A4プレビュー枠、ピンチ対応
+- Panda CSSの `_print` モディファイアを活用したボタンデザイン
+- A4プレビュー枠、ピンチ対応
 
 ---
 
@@ -118,6 +130,7 @@
 - エネルギーUP色6種: 八角形（周囲）
 - タブー色: 三角形
 - 座標計算と中央配置の調整
+- SVG内の要素配置（絶対座標）以外の、コンテナのレイアウトやマージン制御に Panda CSS を適用
 
 #### T3-4: 八角形・三角形SVG実装 - 10分
 - 八角形SVGコンポーネント（サイズバリエーション）
@@ -239,6 +252,75 @@
 
 - **iOS Safari**: `@page` の `margin` 設定が無視されるため、`body` に対して `padding` を設定
 - **Android Chrome**: `print-color-adjust: exact` を指定しないとカラーパレットが白抜きになる
+
+### Panda CSS設定サンプル
+
+#### panda.config.ts
+
+```typescript
+import { defineConfig } from "@pandacss/dev";
+
+export default defineConfig({
+  preflight: false,
+  include: ["./src/**/*.{ts,tsx}"],
+  exclude: [],
+  outdir: "styled-system",
+  theme: {
+    extend: {
+      tokens: {
+        colors: {
+          // エネルギーUP色
+          pink: { value: "#E91E63" },
+          brown: { value: "#795548" },
+          purple: { value: "#9C27B0" },
+          yellow: { value: "#FBC02D" },
+          red: { value: "#D32F2F" },
+          wine: { value: "#880E4F" },
+          // その他の色
+          beige: { value: "#F5F5DC" },
+          navyBlue: { value: "#1A237E" },
+          black: { value: "#212121" },
+          blue: { value: "#1976D2" },
+          green: { value: "#388E3C" },
+          deepGreen: { value: "#1B5E20" },
+          gray: { value: "#757575" },
+          yellowGreen: { value: "#7CB342" },
+        },
+      },
+    },
+  },
+  globalCss: {
+    body: {
+      margin: 0,
+    },
+  },
+});
+```
+
+#### src/index.css
+
+```css
+@layer base {
+  @import "kiso.css";
+}
+
+/* Panda CSSの生成スタイル */
+@layer panda;
+```
+
+#### Biome設定 (biome.jsonc)
+
+```jsonc
+{
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "files": {
+    "ignore": [
+      "styled-system",  // Panda CSS生成ファイルを除外
+      "node_modules"
+    ]
+  }
+}
+```
 
 ---
 

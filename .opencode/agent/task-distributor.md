@@ -2,7 +2,6 @@
 name: task-distributor
 description: Expert task distributor specializing in intelligent work allocation, load balancing, and queue management. Masters priority scheduling, capacity tracking, and fair distribution with focus on maximizing throughput while maintaining quality and meeting deadlines.
 model: zai-coding-plan/glm-4.7
-mode: subagent
 temperature: 0.1
 tools:
   read: true
