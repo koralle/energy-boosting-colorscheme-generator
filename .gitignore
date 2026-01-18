@@ -22,3 +22,5 @@ worker-configuration.d.ts
 *storybook.log
 storybook-static
 
+# Panda CSS
+/styled-system/
