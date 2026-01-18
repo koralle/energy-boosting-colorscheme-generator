@@ -7,6 +7,7 @@
       "dependencies": {
         "@tanstack/react-router": "1.149.3",
         "isbot": "5.1.32",
+        "kiso.css": "1.2.3",
         "react": "19.2.3",
         "react-dom": "19.2.3",
       },
@@ -745,6 +746,8 @@
     "jsesc": ["jsesc@3.1.0", "", { "bin": { "jsesc": "bin/jsesc" } }, "sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA=="],
 
     "json5": ["json5@2.2.3", "", { "bin": { "json5": "lib/cli.js" } }, "sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg=="],
+
+    "kiso.css": ["kiso.css@1.2.3", "", {}, "sha512-uZDh1/nhfMz1P29JWXMpS8W3K1LymS362Jeu24RDGJPn0mcLqApC0GwWgifs2bUHQb8wjjNuC+2Hbe5ql4dLQA=="],
 
     "kleur": ["kleur@4.1.5", "", {}, "sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ=="],
 
