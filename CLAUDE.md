@@ -43,6 +43,13 @@ bun run cf-typegen
 - strictest モード (`@tsconfig/strictest`)
 - `worker-configuration.d.ts` は自動生成されるファイル（Wrangler経由）
 
+### スタイリング
+
+- **リセットCSS**: [kiso.css](https://tak-dcxi.github.io/kiso.css/)
+- **UIのスタイリング**: [Panda CSS](https://panda-css.com/)
+
+特に、Panda CSSを使ったUIのスタイリングについて不明点があればcontext7-mcpを呼び出して下さい。
+
 ### ルート構造
 
 ```
