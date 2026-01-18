@@ -15,6 +15,7 @@
       "react-router.config.ts",
       "worker-configuration.d.ts",
       "workers/app.ts",
+      "panda.config.ts",
 
       // JSON
       "package.json",
