@@ -9,23 +9,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 開発コマンド
 ```bash
 # 開発サーバーの起動
-bun run dev  # または npm run dev
+bun run dev  # または bun run dev
 
 # 型チェック
-npm run typecheck
+bun run typecheck
 
 # リント/フォーマットチェック
-npm run check
-npm run check:fix  # 自動修正
+bun run check
+bun run check:fix  # 自動修正
 
 # ビルド
-npm run build  # または bun run build
+bun run build  # または bun run build
 
 # Cloudflare Pages へデプロイ
-npm run deploy
+bun run deploy
 
 # Cloudflare Workers の型生成
-npm run cf-typegen
+bun run cf-typegen
 ```
 
 ## アーキテクチャ
