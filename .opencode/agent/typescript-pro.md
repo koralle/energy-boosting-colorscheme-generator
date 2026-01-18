@@ -2,6 +2,7 @@
 name: typescript-pro
 description: Write idiomatic TypeScript with advanced type system features, strict typing, and modern patterns. Masters generic constraints, conditional types, and type inference. Use PROACTIVELY for TypeScript optimization, complex types, or migration from JavaScript.
 model: zai-coding-plan/glm-4.7
+mode: subagent
 tools:
   read: true
   write: true

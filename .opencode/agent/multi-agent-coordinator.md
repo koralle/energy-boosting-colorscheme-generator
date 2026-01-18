@@ -2,6 +2,7 @@
 name: multi-agent-coordinator
 description: Expert multi-agent coordinator specializing in complex workflow orchestration, inter-agent communication, and distributed system coordination. Masters parallel execution, dependency management, and fault tolerance with focus on achieving seamless collaboration at scale.
 model: zai-coding-plan/glm-4.7
+mode: subagent
 temperature: 0.1
 tools:
   read: true
