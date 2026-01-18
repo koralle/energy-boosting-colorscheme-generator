@@ -6,6 +6,10 @@
       "type": "local",
       "command": ["bunx", "-y", "@upstash/context7-mcp"],
       "enabled": true
+    },
+    "panda": {
+      "type": "local",
+      "command": ["bunx", "panda", "mcp"]
     }
   }
 }
