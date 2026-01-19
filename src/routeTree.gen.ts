@@ -9,8 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from "./routes/__root";
+import { Route as CompleteRouteImport } from "./routes/complete";
 import { Route as IndexRouteImport } from "./routes/index";
+import { Route as InputRouteImport } from "./routes/input";
+import { Route as PreviewRouteImport } from "./routes/preview";
 
+const PreviewRoute = PreviewRouteImport.update({
+  id: "/preview",
+  path: "/preview",
+  getParentRoute: () => rootRouteImport,
+} as any);
+const InputRoute = InputRouteImport.update({
+  id: "/input",
+  path: "/input",
+  getParentRoute: () => rootRouteImport,
+} as any);
+const CompleteRoute = CompleteRouteImport.update({
+  id: "/complete",
+  path: "/complete",
+  getParentRoute: () => rootRouteImport,
+} as any);
 const IndexRoute = IndexRouteImport.update({
   id: "/",
   path: "/",
@@ -19,28 +37,61 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute;
+  "/complete": typeof CompleteRoute;
+  "/input": typeof InputRoute;
+  "/preview": typeof PreviewRoute;
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute;
+  "/complete": typeof CompleteRoute;
+  "/input": typeof InputRoute;
+  "/preview": typeof PreviewRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
   "/": typeof IndexRoute;
+  "/complete": typeof CompleteRoute;
+  "/input": typeof InputRoute;
+  "/preview": typeof PreviewRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/";
+  fullPaths: "/" | "/complete" | "/input" | "/preview";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/";
-  id: "__root__" | "/";
+  to: "/" | "/complete" | "/input" | "/preview";
+  id: "__root__" | "/" | "/complete" | "/input" | "/preview";
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
+  CompleteRoute: typeof CompleteRoute;
+  InputRoute: typeof InputRoute;
+  PreviewRoute: typeof PreviewRoute;
 }
 
 declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
+    "/preview": {
+      id: "/preview";
+      path: "/preview";
+      fullPath: "/preview";
+      preLoaderRoute: typeof PreviewRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/input": {
+      id: "/input";
+      path: "/input";
+      fullPath: "/input";
+      preLoaderRoute: typeof InputRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/complete": {
+      id: "/complete";
+      path: "/complete";
+      fullPath: "/complete";
+      preLoaderRoute: typeof CompleteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     "/": {
       id: "/";
       path: "/";
@@ -53,6 +104,9 @@ declare module "@tanstack/react-router" {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompleteRoute: CompleteRoute,
+  InputRoute: InputRoute,
+  PreviewRoute: PreviewRoute,
 };
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
