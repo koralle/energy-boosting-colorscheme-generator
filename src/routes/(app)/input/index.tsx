@@ -1,10 +1,10 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { css } from "../../styled-system/css";
-import { PATTERNS } from "../constants/patterns";
-import type { Pattern } from "../types/pattern";
+import { css } from "../../../../styled-system/css";
+import { PATTERNS } from "../../../constants/patterns";
+import type { Pattern } from "../../../types/pattern";
 
-export const Route = createFileRoute("/input")({
+export const Route = createFileRoute("/(app)/input/")({
   component: RouteComponent,
 });
 
