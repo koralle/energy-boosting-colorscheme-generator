@@ -1,5 +1,5 @@
-import { getColorCode } from "../../../../constants/colors";
 import { css } from "../../../../../styled-system/css";
+import { getColorCode } from "../../../../constants/colors";
 import type { ColorName } from "../../../../types/pattern";
 
 /**

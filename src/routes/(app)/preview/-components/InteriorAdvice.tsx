@@ -1,5 +1,5 @@
-import { getInteriorAdvice } from "../../../../constants/patterns";
 import { css } from "../../../../../styled-system/css";
+import { getInteriorAdvice } from "../../../../constants/patterns";
 import type { InteriorPatternNumber } from "../../../../types/pattern";
 
 /**

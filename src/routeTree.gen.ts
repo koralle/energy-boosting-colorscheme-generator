@@ -8,120 +8,116 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as appIndexRouteImport } from './routes/(app)/index'
-import { Route as appPreviewIndexRouteImport } from './routes/(app)/preview/index'
-import { Route as appInputIndexRouteImport } from './routes/(app)/input/index'
-import { Route as appCompleteIndexRouteImport } from './routes/(app)/complete/index'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as appCompleteRouteRouteImport } from "./routes/(app)/complete/route";
+import { Route as appIndexRouteImport } from "./routes/(app)/index";
+import { Route as appInputRouteRouteImport } from "./routes/(app)/input/route";
+import { Route as appPreviewRouteRouteImport } from "./routes/(app)/preview/route";
 
 const appIndexRoute = appIndexRouteImport.update({
-  id: '/(app)/',
-  path: '/',
+  id: "/(app)/",
+  path: "/",
   getParentRoute: () => rootRouteImport,
-} as any)
-const appPreviewIndexRoute = appPreviewIndexRouteImport.update({
-  id: '/(app)/preview/',
-  path: '/preview/',
+} as any);
+const appPreviewRouteRoute = appPreviewRouteRouteImport.update({
+  id: "/(app)/preview",
+  path: "/preview",
   getParentRoute: () => rootRouteImport,
-} as any)
-const appInputIndexRoute = appInputIndexRouteImport.update({
-  id: '/(app)/input/',
-  path: '/input/',
+} as any);
+const appInputRouteRoute = appInputRouteRouteImport.update({
+  id: "/(app)/input",
+  path: "/input",
   getParentRoute: () => rootRouteImport,
-} as any)
-const appCompleteIndexRoute = appCompleteIndexRouteImport.update({
-  id: '/(app)/complete/',
-  path: '/complete/',
+} as any);
+const appCompleteRouteRoute = appCompleteRouteRouteImport.update({
+  id: "/(app)/complete",
+  path: "/complete",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof appIndexRoute
-  '/complete': typeof appCompleteIndexRoute
-  '/input': typeof appInputIndexRoute
-  '/preview': typeof appPreviewIndexRoute
+  "/complete": typeof appCompleteRouteRoute;
+  "/input": typeof appInputRouteRoute;
+  "/preview": typeof appPreviewRouteRoute;
+  "/": typeof appIndexRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof appIndexRoute
-  '/complete': typeof appCompleteIndexRoute
-  '/input': typeof appInputIndexRoute
-  '/preview': typeof appPreviewIndexRoute
+  "/complete": typeof appCompleteRouteRoute;
+  "/input": typeof appInputRouteRoute;
+  "/preview": typeof appPreviewRouteRoute;
+  "/": typeof appIndexRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/(app)/': typeof appIndexRoute
-  '/(app)/complete/': typeof appCompleteIndexRoute
-  '/(app)/input/': typeof appInputIndexRoute
-  '/(app)/preview/': typeof appPreviewIndexRoute
+  __root__: typeof rootRouteImport;
+  "/(app)/complete": typeof appCompleteRouteRoute;
+  "/(app)/input": typeof appInputRouteRoute;
+  "/(app)/preview": typeof appPreviewRouteRoute;
+  "/(app)/": typeof appIndexRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/complete' | '/input' | '/preview'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/complete' | '/input' | '/preview'
-  id:
-    | '__root__'
-    | '/(app)/'
-    | '/(app)/complete/'
-    | '/(app)/input/'
-    | '/(app)/preview/'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/complete" | "/input" | "/preview" | "/";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/complete" | "/input" | "/preview" | "/";
+  id: "__root__" | "/(app)/complete" | "/(app)/input" | "/(app)/preview" | "/(app)/";
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  appIndexRoute: typeof appIndexRoute
-  appCompleteIndexRoute: typeof appCompleteIndexRoute
-  appInputIndexRoute: typeof appInputIndexRoute
-  appPreviewIndexRoute: typeof appPreviewIndexRoute
+  appCompleteRouteRoute: typeof appCompleteRouteRoute;
+  appInputRouteRoute: typeof appInputRouteRoute;
+  appPreviewRouteRoute: typeof appPreviewRouteRoute;
+  appIndexRoute: typeof appIndexRoute;
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/(app)/': {
-      id: '/(app)/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof appIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(app)/preview/': {
-      id: '/(app)/preview/'
-      path: '/preview'
-      fullPath: '/preview'
-      preLoaderRoute: typeof appPreviewIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(app)/input/': {
-      id: '/(app)/input/'
-      path: '/input'
-      fullPath: '/input'
-      preLoaderRoute: typeof appInputIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(app)/complete/': {
-      id: '/(app)/complete/'
-      path: '/complete'
-      fullPath: '/complete'
-      preLoaderRoute: typeof appCompleteIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+    "/(app)/": {
+      id: "/(app)/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof appIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/(app)/preview": {
+      id: "/(app)/preview";
+      path: "/preview";
+      fullPath: "/preview";
+      preLoaderRoute: typeof appPreviewRouteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/(app)/input": {
+      id: "/(app)/input";
+      path: "/input";
+      fullPath: "/input";
+      preLoaderRoute: typeof appInputRouteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/(app)/complete": {
+      id: "/(app)/complete";
+      path: "/complete";
+      fullPath: "/complete";
+      preLoaderRoute: typeof appCompleteRouteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  appCompleteRouteRoute: appCompleteRouteRoute,
+  appInputRouteRoute: appInputRouteRoute,
+  appPreviewRouteRoute: appPreviewRouteRoute,
   appIndexRoute: appIndexRoute,
-  appCompleteIndexRoute: appCompleteIndexRoute,
-  appInputIndexRoute: appInputIndexRoute,
-  appPreviewIndexRoute: appPreviewIndexRoute,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
+import type { createStart } from "@tanstack/react-start";
+import type { getRouter } from "./router.tsx";
+
+declare module "@tanstack/react-start" {
   interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
+    ssr: true;
+    router: Awaited<ReturnType<typeof getRouter>>;
   }
 }
