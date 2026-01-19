@@ -1,15 +1,19 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import * as v from "valibot";
 import { css } from "../../styled-system/css";
 import { FortunePaper } from "../components/FortunePaper";
 import { PATTERNS } from "../constants/patterns";
+import { patternIdSchema } from "../types/pattern";
+
+// 検索パラメータのバリデーション
+const patternSearchSchema = v.object({
+  patternId: patternIdSchema,
+});
 
 export const Route = createFileRoute("/preview")({
   component: RouteComponent,
-  validateSearch: (search: Record<string, unknown>) => {
-    return {
-      patternId: typeof search.patternId === "number" ? search.patternId : undefined,
-    };
-  },
+  validateSearch: patternSearchSchema,
+  errorComponent: () => <h1>Error!</h1>,
 });
 
 function RouteComponent() {
