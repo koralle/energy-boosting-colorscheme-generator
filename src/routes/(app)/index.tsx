@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { css } from "../../../styled-system/css";
+import { Layout } from "../../components/Layout";
 
 export const Route = createFileRoute("/(app)/")({
   component: RouteComponent,
@@ -7,16 +8,7 @@ export const Route = createFileRoute("/(app)/")({
 
 function RouteComponent() {
   return (
-    <div
-      className={css({
-        minHeight: "100vh",
-        backgroundColor: "#f9fafb",
-        padding: "4",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      })}
-    >
+    <Layout>
       <div
         className={css({
           maxWidth: "600px",
@@ -75,6 +67,6 @@ function RouteComponent() {
           鑑定書作成を開始する
         </Link>
       </div>
-    </div>
+    </Layout>
   );
 }

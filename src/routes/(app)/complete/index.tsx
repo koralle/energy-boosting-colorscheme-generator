@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { css } from "../../../../styled-system/css";
+import { Layout } from "../../../components/Layout";
 
 export const Route = createFileRoute("/(app)/complete/")({
   component: RouteComponent,
@@ -7,16 +8,7 @@ export const Route = createFileRoute("/(app)/complete/")({
 
 function RouteComponent() {
   return (
-    <div
-      className={css({
-        minHeight: "100vh",
-        backgroundColor: "#f9fafb",
-        padding: "4",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      })}
-    >
+    <Layout>
       <div
         className={css({
           maxWidth: "600px",
@@ -95,6 +87,6 @@ function RouteComponent() {
           </Link>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }

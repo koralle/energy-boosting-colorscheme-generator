@@ -2,7 +2,6 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
-import "kiso.css";
 import "../index.css";
 
 const RootDocument = ({ children }: { children: ReactNode }) => {

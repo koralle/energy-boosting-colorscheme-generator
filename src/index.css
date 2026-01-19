@@ -1,1 +1,16 @@
 @layer reset, base, tokens, recipes, utilities;
+@import url("kiso.css") layer(base);
+
+@layer base {
+  :where(:root, body) {
+    inline-size: 100svi;
+    min-block-size: 100svb;
+    overflow-x: clip;
+  }
+
+  :where(body) {
+    display: block flex;
+    flex-direction: column;
+    gap: 0;
+  }
+}

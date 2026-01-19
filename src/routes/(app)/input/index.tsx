@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { css } from "../../../../styled-system/css";
+import { Layout } from "../../../components/Layout";
 import { PATTERNS } from "../../../constants/patterns";
 import type { Pattern } from "../../../types/pattern";
 
@@ -26,13 +27,7 @@ function RouteComponent() {
   };
 
   return (
-    <div
-      className={css({
-        minHeight: "100vh",
-        backgroundColor: "#f9fafb",
-        padding: "4",
-      })}
-    >
+    <Layout>
       <div
         className={css({
           maxWidth: "800px",
@@ -242,6 +237,6 @@ function RouteComponent() {
           </button>
         </section>
       </div>
-    </div>
+    </Layout>
   );
 }
