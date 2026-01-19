@@ -1,5 +1,5 @@
-import { css } from "../../styled-system/css";
-import type { Pattern } from "../types/pattern";
+import { css } from "../../../../../styled-system/css";
+import type { Pattern } from "../../../../types/pattern";
 import { ColorSample } from "./ColorSample";
 import { InteriorAdvice } from "./InteriorAdvice";
 
