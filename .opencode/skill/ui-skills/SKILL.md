@@ -1,4 +1,3 @@
-
 ---
 name: ui-skills
 description: Opinionated constraints for building better interfaces with agents.
