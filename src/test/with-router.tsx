@@ -25,7 +25,9 @@ export type ExtractRouteOptions<TId extends RouteIds<(typeof router)["routeTree"
     never
   >
     ? { params?: undefined }
-    : { params: RouteById<(typeof router)["routeTree"], TId>["types"]["allParams"] });
+    : {
+        params: RouteById<(typeof router)["routeTree"], TId>["types"]["allParams"];
+      });
 
 /**
  * A utility component to wrap children with a mocked router for testing purposes.
@@ -73,7 +75,11 @@ export const WithRouter = <
     ]),
   });
 
-  mockedRouter.navigate({ to: routeId.replace(/\/$/, ""), search, params } as any);
+  mockedRouter.navigate({
+    to: routeId.replace(/\/$/, ""),
+    search,
+    params,
+  } as any);
 
   return <RouterProvider router={mockedRouter} />;
 };

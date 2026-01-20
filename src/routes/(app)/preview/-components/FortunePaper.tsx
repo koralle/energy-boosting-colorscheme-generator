@@ -224,7 +224,10 @@ export function FortunePaper({ pattern }: FortunePaperProps) {
         <div
           className={css({
             display: "grid",
-            gridTemplateColumns: { base: "repeat(2, 1fr)", sm: "repeat(3, 1fr)" },
+            gridTemplateColumns: {
+              base: "repeat(2, 1fr)",
+              sm: "repeat(3, 1fr)",
+            },
             gap: "4",
           })}
         >

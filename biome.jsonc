@@ -16,15 +16,22 @@
       "worker-configuration.d.ts",
       "workers/app.ts",
       "panda.config.ts",
+      "postcss.config.ts",
+      ".storybook/**/*.{ts,tsx}",
 
       // JSON
       "package.json",
       "tsconfig.json",
       "tsconfig.cloudflare.json",
       "tsconfig.node.json",
+      "tsconfig.vitest.json",
       "biome.jsonc",
       "wrangler.jsonc",
       ".vscode/settings.json",
+      "opencode.jsonc",
+      ".gemini/settings.json",
+      ".claude/settings.json",
+      ".mcp.json",
 
       // CSS
       "src/**/*.css"
@@ -75,6 +82,16 @@
           "correctness": {
             "noUnusedImports": "off"
           },
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["src/test/with-router.tsx"],
+      "linter": {
+        "rules": {
           "suspicious": {
             "noExplicitAny": "off"
           }

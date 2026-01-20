@@ -1,5 +1,5 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
 import { Layout } from "../components/Layout";
@@ -29,7 +29,12 @@ const RootDocument = ({ children }: { children: ReactNode }) => {
         <Layout>{children}</Layout>
         <TanStackDevtools
           config={{ position: "bottom-right" }}
-          plugins={[{ name: "TanStack Router", render: <TanStackRouterDevtoolsPanel /> }]}
+          plugins={[
+            {
+              name: "TanStack Router",
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+          ]}
         />
         <Scripts />
       </body>
