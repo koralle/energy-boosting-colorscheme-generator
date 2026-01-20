@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Layout } from "../../components/Layout";
 import { Page } from "./-page";
 
 export const Route = createFileRoute("/(app)/")({
@@ -6,5 +7,9 @@ export const Route = createFileRoute("/(app)/")({
 });
 
 function RouteComponent() {
-  return <Page />;
+  return (
+    <Layout>
+      <Page />
+    </Layout>
+  );
 }

@@ -10,7 +10,6 @@ import {
   RouterProvider,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
-import { Layout } from "../components/Layout";
 import { getRouter } from "../router";
 
 const router = getRouter();
@@ -57,10 +56,8 @@ export const WithRouter = <
   const rootRoute = createRootRoute({
     component: () => (
       <>
-        <Layout>
-          <Outlet />
-          <TanStackRouterDevtools />
-        </Layout>
+        <Outlet />
+        <TanStackRouterDevtools />
       </>
     ),
   });

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import * as v from "valibot";
+import { Layout } from "../../../components/Layout";
 import { patternIdSchema } from "../../../types/pattern";
 import { Page } from "./-components/page";
 
@@ -16,5 +17,9 @@ export const Route = createFileRoute("/(app)/preview")({
 
 function RouteComponent() {
   const { patternId } = Route.useSearch();
-  return <Page patternId={patternId} />;
+  return (
+    <Layout>
+      <Page patternId={patternId} />
+    </Layout>
+  );
 }

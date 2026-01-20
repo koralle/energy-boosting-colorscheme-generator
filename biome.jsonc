@@ -37,6 +37,7 @@
       "src/**/*.css"
     ]
   },
+
   "linter": {
     "enabled": true,
     "rules": {

@@ -9,7 +9,7 @@ export function Layout({ children }: Readonly<LayoutProps>) {
   return (
     <>
       <header>
-        <h1>鑑定ツール</h1>
+        <p>鑑定ツール</p>
       </header>
       <main id="main" className={css({ flex: 1 })}>
         {children}
