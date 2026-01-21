@@ -10,7 +10,9 @@
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
     "example-skills@anthropic-agent-skills": true,
-    "commit-commands@claude-plugins-official": true
+    "commit-commands@claude-plugins-official": true,
+    "superpowers@superpowers-marketplace": true,
+    "dig@kuu-marketplace": true
   },
   "sandbox": {}
 }
