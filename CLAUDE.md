@@ -86,3 +86,7 @@ Cloudflare環境変数は `wrangler.jsonc` の `vars` で定義:
 ## パッケージマネージャー
 
 Bun を使用（`package.json` のスクリプトで `bun run` を使用、ローカル開発も想定）
+
+## 不明点の対応について
+
+不明点がなくなるまでAskUserQuestionツールで繰り返し質問すること。
