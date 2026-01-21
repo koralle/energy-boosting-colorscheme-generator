@@ -21,6 +21,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@base-ui/react": "1.0.0",
     "@tanstack/react-router": "1.149.3",
     "isbot": "5.1.32",
     "kiso.css": "1.2.3",
