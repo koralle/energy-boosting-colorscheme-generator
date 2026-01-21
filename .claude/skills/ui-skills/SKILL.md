@@ -1,4 +1,3 @@
-
 ---
 name: ui-skills
 description: Opinionated constraints for building better interfaces with agents.
@@ -21,10 +20,11 @@ When invoked, apply these opinionated constraints for building better interfaces
 
 ## Stack
 
-- MUST use Tailwind CSS defaults unless custom values already exist or are explicitly requested
-- MUST use `motion/react` (formerly `framer-motion`) when JavaScript animation is required
-- SHOULD use `tw-animate-css` for entrance and micro-animations in Tailwind CSS
-- MUST use `cn` utility (`clsx` + `tailwind-merge`) for class logic
+- MUST use Panda CSS for styling
+- MUST use `motion` when JavaScript animation is required
+- SHOULD use Panda CSS's built-in animations for entrance and micro-animations
+- MUST use Panda CSS's `cx` utility or `clsx` for class logic
+- MUST respect existing token definitions in `panda.config.ts` before introducing new design tokens
 
 ## Components
 
@@ -39,8 +39,8 @@ When invoked, apply these opinionated constraints for building better interfaces
 
 - MUST use an `AlertDialog` for destructive or irreversible actions
 - SHOULD use structural skeletons for loading states
-- NEVER use `h-screen`, use `h-dvh`
-- MUST respect `safe-area-inset` for fixed elements
+- NEVER use `height="screen"`, use `height="svb"` (Panda CSS camelCase)
+- MUST respect `safeAreaInsets` for fixed elements (Panda CSS camelCase)
 - MUST show errors next to where the action happens
 - NEVER block paste in `input` or `textarea` elements
 
@@ -48,7 +48,7 @@ When invoked, apply these opinionated constraints for building better interfaces
 
 - NEVER add animation unless it is explicitly requested
 - MUST animate only compositor props (`transform`, `opacity`)
-- NEVER animate layout properties (`width`, `height`, `top`, `left`, `margin`, `padding`)
+- NEVER animate layout properties (`inlineSize`, `blockSize`, `blockStart`, `inlineStart`, `margin`, `padding`)
 - SHOULD avoid animating paint properties (`background`, `color`) except for small, local UI (text, icons)
 - SHOULD use `ease-out` on entrance
 - NEVER exceed `200ms` for interaction feedback
@@ -59,15 +59,17 @@ When invoked, apply these opinionated constraints for building better interfaces
 
 ## Typography
 
-- MUST use `text-balance` for headings and `text-pretty` for body/paragraphs
-- MUST use `tabular-nums` for data
-- SHOULD use `truncate` or `line-clamp` for dense UI
-- NEVER modify `letter-spacing` (`tracking-*`) unless explicitly requested
+- MUST use `textBalance` for headings and `textPretty` for body/paragraphs (Panda CSS camelCase properties)
+- MUST use `tabularNums` for data (Panda CSS camelCase property)
+- SHOULD use `textOverflow="truncate"` or line-clamp utilities for dense UI
+- NEVER modify `letterSpacing` unless explicitly requested
 
 ## Layout
 
-- MUST use a fixed `z-index` scale (no arbitrary `z-*`)
-- SHOULD use `size-*` for square elements instead of `w-*` + `h-*`
+- MUST use a fixed `zIndex` scale (Panda CSS camelCase, no arbitrary values)
+- MUST use logical properties: `inlineSize` instead of `width`, `blockSize` instead of `height`
+- MUST use logical properties for spacing: `blockStart`, `blockEnd`, `inlineStart`, `inlineEnd` instead of `top`, `bottom`, `left`, `right`
+- SHOULD use Panda CSS conditional properties for square elements instead of separating them
 
 ## Performance
 
@@ -80,7 +82,7 @@ When invoked, apply these opinionated constraints for building better interfaces
 - NEVER use gradients unless explicitly requested
 - NEVER use purple or multicolor gradients
 - NEVER use glow effects as primary affordances
-- SHOULD use Tailwind CSS default shadow scale unless explicitly requested
+- SHOULD use Panda CSS default shadow scale unless explicitly requested
 - MUST give empty states one clear next action
 - SHOULD limit accent color usage to one per view
-- SHOULD use existing theme or Tailwind CSS color tokens before introducing new ones
+- SHOULD use existing theme tokens in `panda.config.ts` before introducing new ones
