@@ -1,6 +1,6 @@
 {
   "extends": "@tsconfig/strictest/tsconfig.json",
-  "include": ["vite.config.ts"],
+  "include": ["vite.config.ts", "panda.config.ts", "postcss.config.ts"],
   "compilerOptions": {
     "composite": true,
     "types": ["node"],

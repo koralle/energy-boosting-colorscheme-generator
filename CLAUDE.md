@@ -9,23 +9,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 開発コマンド
 ```bash
 # 開発サーバーの起動
-bun run dev  # または npm run dev
+bun run dev  # または bun run dev
 
 # 型チェック
-npm run typecheck
+bun run typecheck
 
 # リント/フォーマットチェック
-npm run check
-npm run check:fix  # 自動修正
+bun run check
+bun run check:fix  # 自動修正
 
 # ビルド
-npm run build  # または bun run build
+bun run build  # または bun run build
 
 # Cloudflare Pages へデプロイ
-npm run deploy
+bun run deploy
 
 # Cloudflare Workers の型生成
-npm run cf-typegen
+bun run cf-typegen
 ```
 
 ## アーキテクチャ
@@ -42,6 +42,13 @@ npm run cf-typegen
 - プロジェクト参照を使用: `tsconfig.json` → `tsconfig.cloudflare.json` / `tsconfig.node.json`
 - strictest モード (`@tsconfig/strictest`)
 - `worker-configuration.d.ts` は自動生成されるファイル（Wrangler経由）
+
+### スタイリング
+
+- **リセットCSS**: [kiso.css](https://tak-dcxi.github.io/kiso.css/)
+- **UIのスタイリング**: [Panda CSS](https://panda-css.com/)
+
+特に、Panda CSSを使ったUIのスタイリングについて不明点があればcontext7-mcpを呼び出して下さい。
 
 ### ルート構造
 

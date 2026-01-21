@@ -9,50 +9,104 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from "./routes/__root";
-import { Route as IndexRouteImport } from "./routes/index";
+import { Route as appCompleteRouteRouteImport } from "./routes/(app)/complete/route";
+import { Route as appIndexRouteImport } from "./routes/(app)/index";
+import { Route as appInputRouteRouteImport } from "./routes/(app)/input/route";
+import { Route as appPreviewRouteRouteImport } from "./routes/(app)/preview/route";
 
-const IndexRoute = IndexRouteImport.update({
-  id: "/",
+const appIndexRoute = appIndexRouteImport.update({
+  id: "/(app)/",
   path: "/",
+  getParentRoute: () => rootRouteImport,
+} as any);
+const appPreviewRouteRoute = appPreviewRouteRouteImport.update({
+  id: "/(app)/preview",
+  path: "/preview",
+  getParentRoute: () => rootRouteImport,
+} as any);
+const appInputRouteRoute = appInputRouteRouteImport.update({
+  id: "/(app)/input",
+  path: "/input",
+  getParentRoute: () => rootRouteImport,
+} as any);
+const appCompleteRouteRoute = appCompleteRouteRouteImport.update({
+  id: "/(app)/complete",
+  path: "/complete",
   getParentRoute: () => rootRouteImport,
 } as any);
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
+  "/complete": typeof appCompleteRouteRoute;
+  "/input": typeof appInputRouteRoute;
+  "/preview": typeof appPreviewRouteRoute;
+  "/": typeof appIndexRoute;
 }
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
+  "/complete": typeof appCompleteRouteRoute;
+  "/input": typeof appInputRouteRoute;
+  "/preview": typeof appPreviewRouteRoute;
+  "/": typeof appIndexRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
-  "/": typeof IndexRoute;
+  "/(app)/complete": typeof appCompleteRouteRoute;
+  "/(app)/input": typeof appInputRouteRoute;
+  "/(app)/preview": typeof appPreviewRouteRoute;
+  "/(app)/": typeof appIndexRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/";
+  fullPaths: "/complete" | "/input" | "/preview" | "/";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/";
-  id: "__root__" | "/";
+  to: "/complete" | "/input" | "/preview" | "/";
+  id: "__root__" | "/(app)/complete" | "/(app)/input" | "/(app)/preview" | "/(app)/";
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
+  appCompleteRouteRoute: typeof appCompleteRouteRoute;
+  appInputRouteRoute: typeof appInputRouteRoute;
+  appPreviewRouteRoute: typeof appPreviewRouteRoute;
+  appIndexRoute: typeof appIndexRoute;
 }
 
 declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
+    "/(app)/": {
+      id: "/(app)/";
       path: "/";
       fullPath: "/";
-      preLoaderRoute: typeof IndexRouteImport;
+      preLoaderRoute: typeof appIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/(app)/preview": {
+      id: "/(app)/preview";
+      path: "/preview";
+      fullPath: "/preview";
+      preLoaderRoute: typeof appPreviewRouteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/(app)/input": {
+      id: "/(app)/input";
+      path: "/input";
+      fullPath: "/input";
+      preLoaderRoute: typeof appInputRouteRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/(app)/complete": {
+      id: "/(app)/complete";
+      path: "/complete";
+      fullPath: "/complete";
+      preLoaderRoute: typeof appCompleteRouteRouteImport;
       parentRoute: typeof rootRouteImport;
     };
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  appCompleteRouteRoute: appCompleteRouteRoute,
+  appInputRouteRoute: appInputRouteRoute,
+  appPreviewRouteRoute: appPreviewRouteRoute,
+  appIndexRoute: appIndexRoute,
 };
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
