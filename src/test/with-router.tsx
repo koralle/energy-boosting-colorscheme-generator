@@ -57,7 +57,6 @@ export const WithRouter = <
     component: () => (
       <>
         <Outlet />
-        <TanStackRouterDevtools />
       </>
     ),
   });
