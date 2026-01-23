@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { CheckCircle2 } from "lucide-react";
 import { css } from "../../../../../styled-system/css";
 
 export function Page() {
@@ -14,10 +15,12 @@ export function Page() {
       <div
         className={css({
           marginBottom: "6",
-          fontSize: "6xl",
+          color: "primary",
+          display: "flex",
+          justifyContent: "center",
         })}
       >
-        ✓
+        <CheckCircle2 size={64} strokeWidth={1.5} />
       </div>
 
       {/* ヘッダー */}
