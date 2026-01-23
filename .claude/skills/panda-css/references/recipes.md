@@ -2,7 +2,375 @@
 
 Panda CSSのレシピと組み込みパターンの使用方法について説明します。
 
-## Recipes
+## Slot Recipes（スロットレシピ）
+
+スロットレシピは、複数の子要素（スロット）を持つ複合コンポーネントのスタイリングを簡単にする機能です。
+
+### Slot Recipes とは
+
+スロットレシピを使用すると、Card、Alert、Tabsなどの複数のパーツで構成されるコンポーネントを、一つのレシピとして定義できます。
+
+**通常のレシピとの違い**:
+- 通常のレシピ（cva）: 単一の要素にスタイルを適用
+- スロットレシピ: 複数のスロット（要素）にそれぞれスタイルを適用
+
+### Slot Recipes の定義
+
+`panda.config.ts` で `defineSlotRecipe` を使用して定義します：
+
+```tsx
+// panda.config.ts
+import { defineConfig, defineSlotRecipe } from '@pandacss/dev'
+
+export const cardRecipe = defineSlotRecipe({
+  className: 'card',
+  slots: ['root', 'header', 'body', 'footer'],
+
+  base: {
+    root: {
+      backgroundColor: 'white',
+      borderRadius: 'lg',
+      boxShadow: 'md',
+      overflow: 'hidden'
+    },
+    header: {
+      padding: '1.5rem',
+      borderBottom: '1px solid',
+      borderColor: 'gray.200'
+    },
+    body: {
+      padding: '1.5rem'
+    },
+    footer: {
+      padding: '1rem 1.5rem',
+      borderTop: '1px solid',
+      borderColor: 'gray.200',
+      backgroundColor: 'gray.50'
+    }
+  },
+
+  variants: {
+    variant: {
+      elevated: {
+        root: { boxShadow: 'lg' }
+      },
+      outlined: {
+        root: {
+          boxShadow: 'none',
+          border: '1px solid',
+          borderColor: 'gray.200'
+        }
+      }
+    },
+    size: {
+      sm: {
+        header: { padding: '1rem', fontSize: 'sm' },
+        body: { padding: '1rem' },
+        footer: { padding: '0.75rem 1rem' }
+      },
+      md: {
+        header: { padding: '1.5rem', fontSize: 'base' },
+        body: { padding: '1.5rem' },
+        footer: { padding: '1rem 1.5rem' }
+      },
+      lg: {
+        header: { padding: '2rem', fontSize: 'lg' },
+        body: { padding: '2rem' },
+        footer: { padding: '1.25rem 2rem' }
+      }
+    }
+  },
+
+  defaultVariants: {
+    variant: 'elevated',
+    size: 'md'
+  }
+})
+
+export default defineConfig({
+  theme: {
+    extend: {
+      slotRecipes: {
+        card: cardRecipe
+      }
+    }
+  }
+})
+```
+
+### Slot Recipes の使用
+
+生成されたコンポーネントを使用します：
+
+```tsx
+import { Card } from 'styled-system/recipes'
+
+function Demo() {
+  return (
+    <Card>
+      <Card.Header>
+        <h2>カードタイトル</h2>
+      </Card.Header>
+      <Card.Body>
+        <p>カードのコンテンツがここに入ります。</p>
+      </Card.Body>
+      <Card.Footer>
+        <button>アクション</button>
+      </Card.Footer>
+    </Card>
+  )
+}
+```
+
+### バリアントを指定する場合
+
+```tsx
+import { Card } from 'styled-system/recipes'
+
+function Demo() {
+  return (
+    <Card variant="outlined" size="lg">
+      <Card.Header>
+        <h2>アウトラインカード</h2>
+      </Card.Header>
+      <Card.Body>
+        <p>大きなサイズのアウトラインカードです。</p>
+      </Card.Body>
+      <Card.Footer>
+        <button>アクション</button>
+      </Card.Footer>
+    </Card>
+  )
+}
+```
+
+### 一般的なスロットレシピパターン
+
+#### Alert コンポーネント
+
+```tsx
+// panda.config.ts
+export const alertRecipe = defineSlotRecipe({
+  className: 'alert',
+  slots: ['root', 'icon', 'title', 'description'],
+
+  base: {
+    root: {
+      display: 'flex',
+      alignItems: 'start',
+      gap: '3',
+      padding: '4',
+      borderRadius: 'lg',
+      borderWidth: '1px',
+      borderStyle: 'solid'
+    },
+    icon: {
+      flexShrink: '0',
+      width: '5',
+      height: '5'
+    },
+    title: {
+      fontWeight: 'medium',
+      marginBottom: '1'
+    },
+    description: {
+      fontSize: 'sm',
+      color: 'gray.600',
+      _dark: { color: 'gray.400' }
+    }
+  },
+
+  variants: {
+    status: {
+      info: {
+        root: {
+          backgroundColor: 'blue.50',
+          borderColor: 'blue.200',
+          color: 'blue.800'
+        },
+        icon: { color: 'blue.500' }
+      },
+      success: {
+        root: {
+          backgroundColor: 'green.50',
+          borderColor: 'green.200',
+          color: 'green.800'
+        },
+        icon: { color: 'green.500' }
+      },
+      warning: {
+        root: {
+          backgroundColor: 'yellow.50',
+          borderColor: 'yellow.200',
+          color: 'yellow.800'
+        },
+        icon: { color: 'yellow.500' }
+      },
+      error: {
+        root: {
+          backgroundColor: 'red.50',
+          borderColor: 'red.200',
+          color: 'red.800'
+        },
+        icon: { color: 'red.500' }
+      }
+    }
+  },
+
+  defaultVariants: {
+    status: 'info'
+  }
+})
+```
+
+```tsx
+import { Alert } from 'styled-system/recipes'
+
+function Demo() {
+  return (
+    <Alert status="success">
+      <Alert.Icon>
+        <CheckIcon />
+      </Alert.Icon>
+      <div>
+        <Alert.Title>成功しました！</Alert.Title>
+        <Alert.Description>操作が正常に完了しました。</Alert.Description>
+      </div>
+    </Alert>
+  )
+}
+```
+
+#### Tabs コンポーネント
+
+```tsx
+// panda.config.ts
+export const tabsRecipe = defineSlotRecipe({
+  className: 'tabs',
+  slots: ['root', 'list', 'trigger', 'content', 'panel'],
+
+  base: {
+    root: {
+      display: 'flex',
+      flexDirection: 'column'
+    },
+    list: {
+      display: 'flex',
+      flexDirection: 'row',
+      borderBottom: '1px solid',
+      borderColor: 'gray.200'
+    },
+    trigger: {
+      padding: '0.75rem 1rem',
+      fontWeight: 'medium',
+      color: 'gray.600',
+      borderBottom: '2px solid',
+      borderBottomColor: 'transparent',
+      cursor: 'pointer',
+      _hover: {
+        color: 'gray.900'
+      },
+      '&[data-state="active"]': {
+        color: 'blue.600',
+        borderBottomColor: 'blue.600'
+      }
+    },
+    content: {
+      padding: '1.5rem 0'
+    },
+    panel: {
+      display: 'none',
+      '&[data-state="active"]': {
+        display: 'block'
+      }
+    }
+  },
+
+  variants: {
+    variant: {
+      underline: {
+        list: {
+          borderBottom: '1px solid',
+          borderColor: 'gray.200'
+        },
+        trigger: {
+          borderBottom: '2px solid',
+          borderBottomColor: 'transparent'
+        }
+      },
+      enclosed: {
+        list: {
+          backgroundColor: 'gray.100',
+          padding: '0.25rem',
+          borderRadius: 'lg',
+          gap: '0.25rem'
+        },
+        trigger: {
+          borderRadius: 'md',
+          border: 'none',
+          backgroundColor: 'transparent',
+          '&[data-state="active"]': {
+            backgroundColor: 'white',
+            boxShadow: 'sm'
+          }
+        }
+      }
+    },
+    size: {
+      sm: {
+        trigger: { padding: '0.5rem 0.75rem', fontSize: 'sm' }
+      },
+      md: {
+        trigger: { padding: '0.75rem 1rem', fontSize: 'base' }
+      },
+      lg: {
+        trigger: { padding: '1rem 1.25rem', fontSize: 'lg' }
+      }
+    }
+  },
+
+  defaultVariants: {
+    variant: 'underline',
+    size: 'md'
+  }
+})
+```
+
+```tsx
+import { Tabs } from 'styled-system/recipes'
+
+function Demo() {
+  return (
+    <Tabs>
+      <Tabs.List>
+        <Tabs.Trigger value="tab1">タブ1</Tabs.Trigger>
+        <Tabs.Trigger value="tab2">タブ2</Tabs.Trigger>
+        <Tabs.Trigger value="tab3">タブ3</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content>
+        <Tabs.Panel value="tab1">
+          <p>タブ1のコンテンツ</p>
+        </Tabs.Panel>
+        <Tabs.Panel value="tab2">
+          <p>タブ2のコンテンツ</p>
+        </Tabs.Panel>
+        <Tabs.Panel value="tab3">
+          <p>タブ3のコンテンツ</p>
+        </Tabs.Panel>
+      </Tabs.Content>
+    </Tabs>
+  )
+}
+```
+
+### スロットレシピの利点
+
+1. **型安全性**: 各スロットが個別のコンポーネントとして生成されるため、型安全
+2. **一貫性**: 複合コンポーネント全体で一貫したスタイリング
+3. **バリアント**: スロット間で共有されるバリアントを定義可能
+4. **再利用性**: コンポーネントライブラリで簡単に再利用可能
+
+## Atomic Recipes（アトミックレシピ）
 
 レシピは、複数のバリアントを持つ再利用可能なスタイルコンポーネントを作成するための機能です。
 

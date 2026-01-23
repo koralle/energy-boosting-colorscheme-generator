@@ -1,85 +1,79 @@
-import { Link } from "@tanstack/react-router";
+import { Button } from "@base-ui/react";
+import { Check, Home } from "lucide-react";
 import { css } from "../../../../../styled-system/css";
+import { PageContainer } from "../../../../components/PageContainer";
 
 export function Page() {
   return (
-    <div
-      className={css({
-        maxWidth: "600px",
-        width: "100%",
-        textAlign: "center",
-      })}
-    >
-      {/* 完了アイコン */}
-      <div
-        className={css({
-          marginBottom: "6",
-          fontSize: "6xl",
-        })}
-      >
-        ✓
-      </div>
-
-      {/* ヘッダー */}
-      <header
-        className={css({
-          marginBottom: "8",
-        })}
-      >
-        <h1
-          className={css({
-            fontSize: { base: "xl", md: "3xl" },
-            fontWeight: "bold",
-            color: "primary",
-            marginBottom: "4",
-            fontFamily: "serif",
-          })}
-        >
-          印刷が完了しました
-        </h1>
-        <p
-          className={css({
-            fontSize: "sm",
-            color: "text.secondary",
-            marginBottom: "6",
-          })}
-        >
-          鑑定書を作成しました。引き続き頑張ってください。
-        </p>
-      </header>
-
-      {/* アクションボタン */}
-      <div
+    <PageContainer layout="centered">
+      <section
         className={css({
           display: "flex",
           flexDirection: "column",
-          gap: "3",
           alignItems: "center",
+          gap: 4,
         })}
       >
-        <Link
-          to="/"
+        {/* 完了アイコン */}
+        <div
           className={css({
-            display: "inline-block",
-            padding: "3 6",
-            backgroundColor: "primary",
             color: "white",
-            fontWeight: "medium",
-            fontSize: "lg",
-            borderRadius: "md",
-            cursor: "pointer",
-            transition: "all 0.2s ease",
-            _hover: {
-              backgroundColor: "#6d28d9",
-            },
-            _active: {
-              transform: "scale(0.98)",
-            },
+            width: "100px",
+            height: "100px",
+            background:
+              "linear-gradient(135deg, oklch(0.72 0.12 145) 0%, oklch(0.65 0.14 145) 100%)",
+            borderRadius: "50%",
+            display: "grid",
+            placeContent: "center",
+            boxShadow: "0 20px 40px oklch(0.72 0.12 145 / 0.3)",
           })}
         >
-          ホームに戻る
-        </Link>
-      </div>
-    </div>
+          <Check size={48} />
+        </div>
+
+        {/* ヘッダー */}
+        <header className={css({ marginBlockEnd: 4 })}>
+          <hgroup className={css({ display: "flex", flexDirection: "column", gap: 2 })}>
+            <h1
+              className={css({
+                textAlign: "center",
+              })}
+            >
+              <strong>印刷が完了しました</strong>
+            </h1>
+            <p className={css({ textAlign: "center" })}>鑑定書を作成しました。</p>
+          </hgroup>
+        </header>
+
+        {/* アクションボタン */}
+
+        <HomeButton />
+      </section>
+    </PageContainer>
+  );
+}
+
+function HomeButton() {
+  return (
+    <Button
+      className={css({
+        display: "inline flex",
+        justifyContent: "space-between",
+        gap: 1,
+        paddingX: 3,
+        paddingY: 2,
+        backgroundColor: "primary.500",
+        color: "white",
+        fontSize: "lg",
+        borderRadius: "md",
+        cursor: "pointer",
+        _hover: {
+          backgroundColor: "primary.600",
+        },
+      })}
+    >
+      <Home />
+      <strong>ホームに戻る</strong>
+    </Button>
   );
 }

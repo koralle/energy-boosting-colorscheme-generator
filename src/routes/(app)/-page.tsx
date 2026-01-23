@@ -1,19 +1,17 @@
+import { Button } from "@base-ui/react/button";
 import { Link } from "@tanstack/react-router";
+import { Home } from "lucide-react";
 import { css } from "../../../styled-system/css";
+import { PageContainer } from "../../components/PageContainer";
 
 export function Page() {
   return (
-    <div
-      className={css({
-        maxWidth: "600px",
-        width: "100%",
-        textAlign: "center",
-      })}
-    >
+    <PageContainer layout="centered">
       {/* ヘッダー */}
       <header
         className={css({
           marginBottom: "8",
+          textAlign: "center",
         })}
       >
         <h1
@@ -38,28 +36,31 @@ export function Page() {
       </header>
 
       {/* 開始ボタン */}
-      <Link
-        to="/input"
-        className={css({
-          display: "inline-block",
-          padding: "4 8",
-          backgroundColor: "primary",
-          color: "white",
-          fontWeight: "medium",
-          fontSize: "lg",
-          borderRadius: "md",
-          cursor: "pointer",
-          transition: "all 0.2s ease",
-          _hover: {
-            backgroundColor: "#6d28d9",
-          },
-          _active: {
-            transform: "scale(0.98)",
-          },
-        })}
-      >
-        鑑定書作成を開始する
-      </Link>
-    </div>
+      <StartButton />
+    </PageContainer>
+  );
+}
+
+function StartButton() {
+  return (
+    <Button
+      className={css({
+        display: "inline flex",
+        justifyContent: "center",
+        gap: 1,
+        paddingX: 3,
+        paddingY: 2,
+        backgroundColor: "primary.500",
+        color: "white",
+        fontSize: "lg",
+        borderRadius: "md",
+        cursor: "pointer",
+        _hover: {
+          backgroundColor: "primary.600",
+        },
+      })}
+    >
+      <strong>鑑定書作成を開始する</strong>
+    </Button>
   );
 }

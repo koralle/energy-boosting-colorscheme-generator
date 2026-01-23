@@ -604,3 +604,202 @@ export default defineConfig({
   hash: process.env.NODE_ENV === 'production'
 })
 ```
+
+## Config Functions（コンフィグ関数）
+
+設定内で関数を使用して、動的な値を定義できます。
+
+### 関数を使用したトークン定義
+
+```tsx
+export default defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        // 関数を使って動的に色を生成
+        primary: {
+          50: { value: ({ getToken }) => getToken('colors.blue.50') },
+          100: { value: ({ getToken }) => getToken('colors.blue.100') },
+          500: { value: ({ getToken }) => getToken('colors.blue.500') },
+        }
+      }
+    }
+  }
+})
+```
+
+### 環境に応じた設定
+
+```tsx
+export default defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        brand: {
+          value: ({ env }) => env('BRAND_COLOR', '#3b82f6')
+        }
+      }
+    }
+  }
+})
+```
+
+## Customizing Patterns（パターンのカスタマイズ）
+
+ビルトインパターンを拡張またはカスタマイズできます。
+
+### パターンの拡張
+
+```tsx
+export default defineConfig({
+  theme: {
+    extend: {
+      // 既存のパターンを拡張
+      patterns: {
+        flex: {
+          // カスタムプロパティを追加
+          defaultProps: {
+            gap: '4'
+          }
+        }
+      }
+    }
+  }
+})
+```
+
+### カスタムパターンの定義
+
+```tsx
+export default defineConfig({
+  theme: {
+    extend: {
+      patterns: {
+        // カスタムパターンを定義
+        grid: {
+          properties: {
+            columns: 'gridTemplateColumns',
+            rows: 'gridTemplateRows',
+            gap: 'gap'
+          },
+          transform(value) {
+            return {
+              gridTemplateColumns: value.columns,
+              gridTemplateRows: value.rows,
+              gap: value.gap
+            }
+          }
+        }
+      }
+    }
+  }
+})
+```
+
+## Utilities Customization（ユーティリティのカスタマイズ）
+
+ユーティリティプロパティをカスタマイズできます。
+
+### カスタムユーティリティの定義
+
+```tsx
+export default defineConfig({
+  theme: {
+    extend: {
+      utilities: {
+        // カスタムユーティリティを定義
+        'text-shadow': {
+          shorthand: 'textShadow',
+          className: 'text_shadow',
+          values: 'spacing',
+          transform(value) {
+            return {
+              textShadow: `0 2px 4px ${value}`
+            }
+          }
+        }
+      }
+    }
+  }
+})
+```
+
+```tsx
+// 使用
+import { css } from 'styled-system/css'
+
+<div className={css({ textShadow: 'blue.500' })} />
+```
+
+### ユーティリティの無効化
+
+```tsx
+export default defineConfig({
+  theme: {
+    unset: {
+      // 特定のユーティリティを無効化
+      utilities: ['textShadow', 'filter']
+    }
+  }
+})
+```
+
+## Dependencies Option
+
+HMR（Hot Module Replacement）のために、追加のファイルを監視できます。
+
+### dependencies の使用
+
+```tsx
+export default defineConfig({
+  dependencies: [
+    // テーマファイルを監視
+    'src/theme/**/*.ts',
+    // 設定ファイルを監視
+    'src/config/**/*.ts',
+    // 環境ファイルを監視
+    '.env.local'
+  ]
+})
+```
+
+これにより、監視対象のファイルが変更されると、Panda CSSが自動的に再生成されます。
+
+## jsxFramework Option
+
+JSXフレームワークを指定することで、適切な`styled`関数を使用できます。
+
+```tsx
+export default defineConfig({
+  jsxFramework: 'react', // 'react', 'vue', 'solid', etc.
+})
+```
+
+## importMap Option
+
+パスエイリアスを解決するためにimportMapを使用できます。
+
+```tsx
+export default defineConfig({
+  importMap: '@/*',
+  // またはオブジェクト形式
+  importMap: {
+    '@': './src',
+    '@/components': './src/components'
+  }
+})
+```
+
+## outExtension Option
+
+生成されるファイルの拡張子を指定できます。
+
+```tsx
+export default defineConfig({
+  // TypeScriptファイルを生成
+  outExtension: 'ts',
+
+  // またはJavaScriptファイルを生成
+  outExtension: 'js'
+})
+```

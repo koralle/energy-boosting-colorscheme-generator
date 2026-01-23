@@ -136,6 +136,68 @@ const buttonRecipe = cva({
 </button>
 ```
 
+### 4. Template Literals（テンプレートリテラル）
+
+テンプレートリテラル構文を使用して、より柔軟なスタイリングが可能です。
+
+```tsx
+import { css } from 'styled-system/css'
+
+// 基本的なテンプレートリテラル
+const button = css`
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: medium;
+`
+
+// 疑似セレクタとネスト
+const buttonWithHover = css`
+  padding: 8px 16px;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: blue.600;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+`
+
+// 動的な値を含むスタイル
+const dynamicButton = (variant: 'primary' | 'secondary') => css`
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: ${variant === 'primary' ? 'blue.500' : 'gray.500'};
+  color: ${variant === 'primary' ? 'white' : 'black'};
+
+  &:hover {
+    opacity: 0.9;
+  }
+`
+
+// グローバルスタイルとの組み合わせ
+const Card = styled('div', {
+  base: css`
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+  `
+})
+```
+
+**利点**:
+- 完全なCSS構文を使用できる
+- 動的な値を簡単に埋め込める
+- ネストされたスタイルを記述しやすい
+- 既存のCSSをそのまま使用できる
+
 ## Style Props
 
 Panda CSSでは、CSSプロパティを短縮形で使用できます。
@@ -358,4 +420,142 @@ css({
   left: '0',
   zIndex: '10',
 })
+```
+
+## Color Opacity Modifier（カラーオパシティ修飾子）
+
+色のトークンに `/` 構文を使用して透明度を指定できます。
+
+```tsx
+import { css } from 'styled-system/css'
+
+// パーセンテージで透明度を指定
+css({
+  // 50%の透明度
+  backgroundColor: 'blue.500/50',
+  // 25%の透明度
+  color: 'red.500/25',
+  // 75%の透明度
+  borderColor: 'green.500/75',
+})
+
+// 0-1の小数でも指定可能
+css({
+  backgroundColor: 'blue.500/0.5', // 50%の透明度
+  color: 'red.500/0.25', // 25%の透明度
+})
+
+// 疑似セレクタと組み合わせ
+css({
+  backgroundColor: 'blue.500',
+  _hover: {
+    backgroundColor: 'blue.500/80', // ホバー時に80%の透明度
+  },
+  _active: {
+    backgroundColor: 'blue.500/60', // アクティブ時に60%の透明度
+  },
+})
+
+// セマンティックトークンでも使用可能
+css({
+  backgroundColor: 'primary/50',
+  color: 'text.secondary/75',
+})
+```
+
+**利点**:
+- 別々の色トークンを定義する必要がない
+- 実行時に透明度を動的に計算できる
+- ダークモードでの色調整に便利
+
+## JSX Style Context（JSXスタイルコンテキスト）
+
+JSXコンポーネントでは、スタイルが親から子へ自動的に伝播します。
+
+```tsx
+import { styled } from 'styled-system/jsx'
+
+// 親コンポーネントで指定したスタイルは子コンポーネントにも継承される
+const Container = styled('div', {
+  color: 'blue.500',
+  fontSize: 'lg',
+})
+
+function Demo() {
+  return (
+    <Container>
+      {/* このテキストは blue.500, lg のサイズで表示される */}
+      <span>継承されたスタイル</span>
+      <div>
+        {/* ネストされた要素にも継承される */}
+        <p>このテキストも継承されたスタイル</p>
+      </div>
+    </Container>
+  )
+}
+```
+
+**スタイルの優先順位**:
+1. 子コンポーネントで明示的に指定されたスタイル
+2. 親コンポーネントから継承されたスタイル
+3. デフォルトのスタイル
+
+## Merging Styles（スタイルのマージ）
+
+複数のスタイルを結合する場合、Panda CSSは予測可能な方法でマージを行います。
+
+```tsx
+import { css, cx } from 'styled-system/css'
+
+// 複数のcss呼び出しをマージ
+function Demo() {
+  const baseStyles = css({ color: 'blue.500', fontSize: 'lg' })
+  const hoverStyles = css({ _hover: { color: 'blue.600' } })
+
+  // cx関数で結合
+  return (
+    <div className={cx(baseStyles, hoverStyles, { padding: '4' })}>
+      マージされたスタイル
+    </div>
+  )
+}
+```
+
+**マージのルール**:
+
+1. **ショートハンドプロパティが優先**
+```tsx
+css({
+  paddingTop: '20px',  // 無視される
+  padding: '10px'       // 優先される
+})
+// 結果: padding: 10px
+```
+
+2. **後から指定されたスタイルが優先**
+```tsx
+const styles1 = css({ color: 'red' })
+const styles2 = css({ color: 'blue' })
+
+cx(styles1, styles2)
+// 結果: color: blue
+```
+
+3. **疑似セレクタはマージされる**
+```tsx
+const base = css({
+  _hover: { color: 'blue.600' },
+  fontSize: 'lg'
+})
+
+const extended = css({
+  _hover: { bg: 'blue.50' },
+  padding: '4'
+})
+
+cx(base, extended)
+// 結果:
+// _hover: { color: 'blue.600', bg: 'blue.50' }
+// fontSize: 'lg'
+// padding: '4'
 ```

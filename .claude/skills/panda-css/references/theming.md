@@ -436,3 +436,234 @@ export default defineConfig({
   }
 })
 ```
+
+## Multi-Theme Tokens（マルチテーマトークン）
+
+複数のテーマを定義して切り替えることができます。
+
+### テーマの定義
+
+```tsx
+// panda.config.ts
+import { defineConfig } from '@pandacss/dev'
+
+export default defineConfig({
+  theme: {
+    extend: {
+      semanticTokens: {
+        colors: {
+          // 複数のテーマを定義
+          primary: {
+            value: {
+              // デフォルト（ライト）
+              base: '#3b82f6',
+              // ダークモード
+              _dark: '#60a5fa',
+              // カスタムテーマ
+              _ocean: '#0ea5e9',
+              _forest: '#10b981',
+              _sunset: '#f59e0b'
+            }
+          },
+          background: {
+            value: {
+              base: '#ffffff',
+              _dark: '#1a1a1a',
+              _ocean: '#f0f9ff',
+              _forest: '#f0fdf4',
+              _sunset: '#fffbeb'
+            }
+          },
+          text: {
+            value: {
+              base: '#1a202c',
+              _dark: '#f7fafc',
+              _ocean: '#0c4a6e',
+              _forest: '#14532d',
+              _sunset: '#78350f'
+            }
+          }
+        }
+      }
+    }
+  },
+  conditions: {
+    extend: {
+      // カスタムテーマの条件を定義
+      _ocean: '[data-theme="ocean"] &',
+      _forest: '[data-theme="forest"] &',
+      _sunset: '[data-theme="sunset"] &'
+    }
+  }
+})
+```
+
+### テーマの切り替え
+
+```tsx
+import { css } from 'styled-system/css'
+
+function ThemeSwitcher() {
+  const [theme, setTheme] = useState('base')
+
+  const switchTheme = (newTheme: string) => {
+    setTheme(newTheme)
+    document.documentElement.setAttribute('data-theme', newTheme)
+  }
+
+  return (
+    <div className={css({
+      backgroundColor: 'background',
+      color: 'text'
+    })}>
+      <button onClick={() => switchTheme('ocean')}>オーシャン</button>
+      <button onClick={() => switchTheme('forest')}>フォレスト</button>
+      <button onClick={() => switchTheme('sunset')}>サンセット</button>
+    </div>
+  )
+}
+```
+
+## Text Styles（テキストスタイル）
+
+再利用可能なテキストスタイルを定義できます。
+
+### textStyles の使用
+
+```tsx
+// panda.config.ts
+import { defineConfig } from '@pandacss/dev'
+
+export default defineConfig({
+  theme: {
+    extend: {
+      textStyles: {
+        // 見出しスタイル
+        heading: {
+          value: {
+            fontFamily: 'heading',
+            fontWeight: 'bold',
+            lineHeight: '1.2',
+            letterSpacing: '-0.02em'
+          }
+        },
+        // 本文スタイル
+        body: {
+          value: {
+            fontFamily: 'body',
+            lineHeight: '1.6',
+            letterSpacing: '0'
+          }
+        },
+        // キャプションスタイル
+        caption: {
+          value: {
+            fontSize: 'sm',
+            color: 'gray.600',
+            fontWeight: 'medium'
+          }
+        },
+        // リードスタイル
+        lead: {
+          value: {
+            fontSize: 'xl',
+            lineHeight: '1.5',
+            color: 'gray.600'
+          }
+        }
+      }
+    }
+  }
+})
+```
+
+### Text Styles の使用
+
+```tsx
+import { css } from 'styled-system/css'
+
+<h1 className={css({ textStyle: 'heading', fontSize: '3xl' })}>
+  タイトル
+</h1>
+
+<p className={css({ textStyle: 'lead' })}>
+  リードテキスト
+</p>
+```
+
+## Layer Styles（レイヤースタイル）
+
+グローバルスタイルレイヤーを定義して、再利用可能なスタイルセットを作成できます。
+
+### layerStyles の使用
+
+```tsx
+// panda.config.ts
+import { defineConfig } from '@pandacss/dev'
+
+export default defineConfig({
+  globalCss: {
+    // レイヤースタイルを定義
+    '@layer components': {
+      '.card-base': {
+        backgroundColor: 'white',
+        borderRadius: 'lg',
+        padding: '1.5rem',
+        boxShadow: 'md',
+        _dark: {
+          backgroundColor: 'gray.800'
+        }
+      },
+      '.btn-base': {
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '0.5rem 1rem',
+        borderRadius: 'md',
+        fontWeight: 'medium',
+        cursor: 'pointer',
+        transition: 'all 150ms'
+      }
+    }
+  }
+})
+```
+
+### Layer Styles の使用
+
+```tsx
+// HTMLクラスとして使用
+<div className="card-base">
+  <p>カードの内容</p>
+</div>
+
+<button className="btn-base">ボタン</button>
+```
+
+### Panda Studio との統合
+
+Panda Studioは、ビジュアルなテーマエディタです。
+
+```tsx
+// panda.config.ts
+import { defineConfig } from '@pandacss/dev'
+
+export default defineConfig({
+  // Panda Studioとの統合を有効化
+  theme: {
+    // Studioで編集可能なトークン
+    extend: {
+      semanticTokens: {
+        colors: {
+          // Studioで編集可能
+          primary: {
+            value: { base: '#3b82f6', _dark: '#60a5fa' }
+          }
+        }
+      }
+    }
+  }
+})
+```
+
+Panda Studioの詳細については、[Panda Studio ドキュメント](https://panda-css.com/docs/theming/studio)を参照してください。

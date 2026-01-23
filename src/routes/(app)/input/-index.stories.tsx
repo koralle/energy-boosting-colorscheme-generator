@@ -4,7 +4,7 @@ import { WithRouter } from "../../../test/with-router";
 import { Page } from "./-components/page";
 
 const meta: Meta<typeof Page> = {
-  title: "パターン選択画面",
+  title: "画面 / パターン選択画面",
   component: Page,
   decorators: [(storyFn) => <Layout>{storyFn()}</Layout>],
 };

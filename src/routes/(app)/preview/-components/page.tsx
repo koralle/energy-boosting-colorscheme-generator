@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { css } from "../../../../../styled-system/css";
+import { PageContainer } from "../../../../components/PageContainer";
 import { PATTERNS } from "../../../../constants/patterns";
 import { FortunePaper } from "./FortunePaper";
 
@@ -39,12 +40,7 @@ export function Page({ patternId }: PageProps) {
   }
 
   return (
-    <div
-      className={css({
-        maxWidth: "800px",
-        margin: "0 auto",
-      })}
-    >
+    <PageContainer>
       {/* ヘッダー */}
       <header
         className={css({
@@ -126,6 +122,6 @@ export function Page({ patternId }: PageProps) {
       >
         <FortunePaper pattern={selectedPattern} />
       </div>
-    </div>
+    </PageContainer>
   );
 }
