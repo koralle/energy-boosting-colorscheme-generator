@@ -5,9 +5,12 @@ export function Page() {
   return (
     <div
       className={css({
-        maxWidth: "600px",
-        width: "100%",
-        textAlign: "center",
+        maxInlineSize: "1000px",
+        inlineSize: "fit-content",
+        minInlineSize: "100%",
+        flex: 1,
+        display: "grid",
+        placeContent: "center",
       })}
     >
       {/* ヘッダー */}
