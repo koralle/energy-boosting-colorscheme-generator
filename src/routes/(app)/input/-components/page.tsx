@@ -1,54 +1,75 @@
-import { Field } from "@base-ui/react/field";
-import { Fieldset } from "@base-ui/react/fieldset";
-import { Form } from "@base-ui/react/form";
-import { Radio } from "@base-ui/react/radio";
+import { Button } from "@base-ui/react/button";
 import { RadioGroup } from "@base-ui/react/radio-group";
+import * as v from "valibot";
 import { css } from "../../../../../styled-system/css";
 import { PATTERNS } from "../../../../constants/patterns";
-import type { Pattern } from "../../../../types/pattern";
+import { type Pattern, patternIdSchema } from "../../../../types/pattern";
+import { useAppForm } from "../-hooks/use-form";
+import { formSchema } from "../-schemas/form-schema";
+import { RadioCard } from "./radio-card";
 
 export function Page() {
+  const form = useAppForm({
+    defaultValues: {
+      patternId: 1,
+    },
+    validators: {
+      onChange: formSchema,
+    },
+    onSubmit: async ({ value }) => {
+      console.log({ value });
+    },
+  });
+
   return (
     <div
       className={css({
         maxInlineSize: "1000px",
         inlineSize: "fit-content",
+        minInlineSize: "100%",
       })}
     >
-      <Form>
-        <Field.Root name="patternId">
-          <Fieldset.Root
-            render={<RadioGroup required />}
-            className={css({ display: "flex", flexDirection: "column", inlineSize: "100%" })}
-          >
-            <Fieldset.Legend>
-              <strong>
-                鑑定パターンを選択してください。
-              </strong>
-            </Fieldset.Legend>
+      <form>
+        <div>
+          <form.Subscribe
+            selector={(state) => state.values.patternId}
+            children={(patternId) => (
+              <>
+                パターン{patternId}が選択されています。
+                <Button type="button" onClick={() => form.reset()}>
+                  リセットする
+                </Button>
+              </>
+            )}
+          />
+        </div>
 
-            {PATTERNS.map((pattern: Pattern) => (
-              <Field.Label key={pattern.id} className={css({ padding: 2, inlineSize: "stretch" })}>
-                <Radio.Root value={pattern.id}>
-                  <Radio.Indicator />
-                </Radio.Root>
-
-                <div className={css({ display: "flex", flexDirection: "column" })}>
-                  <span>自分色: {pattern.energyUpColors.myself}</span>
-                  <span>やる気色: {pattern.energyUpColors.motivation}</span>
-                  <span>精神安定色: {pattern.energyUpColors.mentalStability}</span>
-                  <span>決断色: {pattern.energyUpColors.decision}</span>
-                  <span>健康色: {pattern.energyUpColors.health}</span>
-                  <span>経済色: {pattern.energyUpColors.economy}</span>
-                </div>
-
-                <span>タブー色: {pattern.tabooColor}</span>
-              </Field.Label>
-            ))}
-          </Fieldset.Root>
-          <RadioGroup></RadioGroup>
-        </Field.Root>
-      </Form>
+        <form.Field
+          name="patternId"
+          children={({ state, handleChange }) => (
+            <>
+              <fieldset>
+                <RadioGroup
+                  value={state.value}
+                  onValueChange={(value) => {
+                    const parsedValue = v.parse(patternIdSchema, value);
+                    handleChange(parsedValue);
+                  }}
+                  className={css({
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 2,
+                  })}
+                >
+                  {PATTERNS.map((pattern: Pattern) => (
+                    <RadioCard key={pattern.id} pattern={pattern} />
+                  ))}
+                </RadioGroup>
+              </fieldset>
+            </>
+          )}
+        ></form.Field>
+      </form>
     </div>
   );
 }

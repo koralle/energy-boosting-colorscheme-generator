@@ -10,6 +10,7 @@ export function PageContainer({ children, layout = "standard" }: PageContainerPr
   const containerStyles = css({
     maxInlineSize: "1000px",
     inlineSize: "fit-content",
+    minInlineSize: "100%",
     ...(layout === "centered" && {
       flex: 1,
       display: "grid",
