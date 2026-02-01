@@ -179,29 +179,33 @@ src/
 ## 相談ルール
 
 - **重要**:
-  - 作業開始時には必ずGemini CLIに作業計画をレビューしてもらう
-  - 作業完了時には必ずGemini CLIに作業に不備/不足がないかチェックしてもらう
+  - 作業開始時には必ずClaude Codeに作業計画をレビューしてもらう
+  - 作業完了時には必ずClaude Codeに作業に不備/不足がないかチェックしてもらう
 
-上記以外にも作業中に以下のような状況に直面した場合は、Gemini CLIに相談する:
+上記以外にも作業中に以下のような状況に直面した場合は、Claude Codeに相談する:
 
 - 作業の遂行に問題が発生した
 - 複数の選択肢があり判断に迷っている
 - エラーや予期しない動作の原因が特定できない
 
 - **注意**:
-  あなたとGemini CLIは特性の異なる優秀なエンジニアです。Gemini CLIに相談する際は以下を意識してください：
-  - Gemini CLIの提案を鵜呑みにせず、その根拠や理由を理解する
-  - 自分の分析結果とGemini CLIの意見が異なる場合は、双方の視点を比較検討する
+  あなたとClaude Codeは特性の異なる優秀なエンジニアです。Claude Codeに相談する際は以下を意識してください：
+  - Claude Codeの提案を鵜呑みにせず、その根拠や理由を理解する
+  - 自分の分析結果とClaude Codeの意見が異なる場合は、双方の視点を比較検討する
   - 最終的な判断は、両者の意見を総合的に評価した上で、自分で下す
 
-## Gemini CLIを呼び出す際の注意
+## 画面実装後の動作確認方法
 
-```bash
-# NG
-gemini -p "<prompt>"
+### UI/UXデザインを単に修正しただけで、Storybook上で確認すればいいだけの場合
 
-# OK
-gemini -p "<prompt>" \
-  --model "gemini-3-flash-preview" \
-  --yolo
-```
+1. `bun run storybook`を実行し、Storybookを立ち上げる
+2. Storybookにアクセスし、該当の画面/Storyにagent-browserでアクセスする
+3. agent-browserを使って画面操作を行い、修正結果を確認する
+4. `bun run check`と`bun run typecheck`による静的解析を実行する
+
+### 画面遷移などStorybook上では確認できない修正の場合
+
+1. `bun run dev`を実行し、開発用サーバーを立ち上げる
+2. 開発用サーバーにアクセスし、該当の画面にagent-browserでアクセスする
+3. agent-browserを使って画面操作を行い、修正結果を確認する
+4. `bun run check`と`bun run typecheck`による静的解析を実行する
