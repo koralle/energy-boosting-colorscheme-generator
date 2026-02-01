@@ -16,33 +16,34 @@ export default defineConfig({
       tokens: {
         colors: {
           primary: {
-            // シグモイド関数で生成した明度変化
-            // 明度 = 0.1 + 0.9 × (1 / (1 + exp(-0.5 × (x - 5))))
-            50: { value: "oklch(0.98 0.02 90)" },
-            100: { value: "oklch(0.95 0.04 90)" },
-            200: { value: "oklch(0.90 0.06 90)" },
-            300: { value: "oklch(0.84 0.09 90)" },
-            400: { value: "oklch(0.78 0.12 90)" },
-            500: { value: "oklch(0.75 0.15 90)" }, // メインゴールド
-            600: { value: "oklch(0.68 0.16 90)" },
-            700: { value: "oklch(0.58 0.17 90)" },
-            800: { value: "oklch(0.45 0.17 90)" },
-            900: { value: "oklch(0.32 0.16 90)" },
-            950: { value: "oklch(0.20 0.12 90)" },
+            // 知覚的に均一なゴールドスケール
+            // 各ステップ間のΔE ≈ 0.076-0.080 (CV: 0.0245)
+            50: { value: "oklch(0.96 0.02 90)" },
+            100: { value: "oklch(0.914 0.08 90)" },
+            200: { value: "oklch(0.84 0.108 90)" },
+            300: { value: "oklch(0.762 0.124 90)" },
+            400: { value: "oklch(0.683 0.133 90)" },
+            500: { value: "oklch(0.603 0.139 90)" },
+            600: { value: "oklch(0.524 0.143 90)" },
+            700: { value: "oklch(0.444 0.145 90)" },
+            800: { value: "oklch(0.364 0.144 90)" },
+            900: { value: "oklch(0.285 0.136 90)" },
+            950: { value: "oklch(0.22 0.1 90)" },
           },
           gray: {
-            // シグモイド関数で生成した明度変化（グレースケール）
+            // 知覚的に均一なグレースケール（OKLCH線形補間）
+            // 各ステップ間のΔE ≈ 0.08-0.09
             50: { value: "oklch(0.97 0 0)" },
-            100: { value: "oklch(0.96 0 0)" },
-            200: { value: "oklch(0.95 0 0)" },
-            300: { value: "oklch(0.93 0 0)" },
-            400: { value: "oklch(0.87 0 0)" },
-            500: { value: "oklch(0.75 0 0)" },
-            600: { value: "oklch(0.27 0 0)" },
-            700: { value: "oklch(0.10 0 0)" },
-            800: { value: "oklch(0.07 0 0)" },
-            900: { value: "oklch(0.06 0 0)" },
-            950: { value: "oklch(0.05 0 0)" },
+            100: { value: "oklch(0.88 0 0)" },
+            200: { value: "oklch(0.80 0 0)" },
+            300: { value: "oklch(0.71 0 0)" },
+            400: { value: "oklch(0.62 0 0)" },
+            500: { value: "oklch(0.53 0 0)" },
+            600: { value: "oklch(0.44 0 0)" },
+            700: { value: "oklch(0.35 0 0)" },
+            800: { value: "oklch(0.27 0 0)" },
+            900: { value: "oklch(0.18 0 0)" },
+            950: { value: "oklch(0.10 0 0)" },
           },
         },
         // 8ポイントグリッドシステムに基づく基本スペース（8px単位）
@@ -135,6 +136,7 @@ export default defineConfig({
       inlineSize: "100svi",
       minBlockSize: "100svb",
       overFlowX: "clip",
+      color: "gray.700",
     },
     ":where(body)": {
       display: "block flex",
