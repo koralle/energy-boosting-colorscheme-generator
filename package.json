@@ -10,7 +10,7 @@
     "dev": "vite dev",
     "postinstall": "bun run cf-typegen",
     "preview": "bun run build && vite preview",
-    "typecheck": "bun run cf-typegen && tsc -b",
+    "typecheck": "bun run cf-typegen && tsgo -b",
     "check": "biome check",
     "check:fix": "biome check --fix",
     "storybook": "storybook dev -p 6006",
