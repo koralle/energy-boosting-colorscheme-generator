@@ -9,7 +9,16 @@ export function Layout({ children }: Readonly<LayoutProps>) {
   return (
     <>
       <Header />
-      <main id="main" className={css({ display: "block", flex: 1 })}>
+      <main
+        id="main"
+        className={css({
+          paddingX: "fluidXs",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          flex: 1,
+        })}
+      >
         {children}
       </main>
       <Footer />

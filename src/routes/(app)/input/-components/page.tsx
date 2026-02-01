@@ -21,8 +21,10 @@ export function Page() {
   return (
     <div
       className={css({
-        maxWidth: "800px",
-        margin: "0 auto",
+        maxInlineSize: "1000px",
+        inlineSize: "fit-content",
+        minInlineSize: "100%",
+        flex: 1,
       })}
     >
       {/* ヘッダー */}
