@@ -7,9 +7,31 @@ import type { ColorName, Pattern } from "../../../../types/pattern";
 
 function ColorPill({ label, name }: { label: string; name: ColorName }) {
   return (
-    <div className={flex({ direction: "column", gap: 1 })}>
-      <span className={css({ fontSize: "body", color: "gray.500" })}>{label}</span>
-      <div className={flex({ align: "start", gap: 2 })}>
+    <div
+      className={flex({
+        direction: "column",
+        gap: 1,
+        height: "100%",
+      })}
+    >
+      <span
+        className={css({
+          fontSize: "body",
+          color: "gray.500",
+          height: "20px",
+          display: "flex",
+          alignItems: "center",
+        })}
+      >
+        {label}
+      </span>
+      <div
+        className={flex({
+          align: "center",
+          gap: 2,
+          height: "28px",
+        })}
+      >
         <span
           className={css({
             inlineSize: "24px",
@@ -77,6 +99,7 @@ export function RadioCard({ pattern }: { pattern: Pattern }) {
               className={flex({
                 direction: "column",
                 gap: 3,
+                height: "100%",
               })}
             >
               <div
@@ -138,6 +161,7 @@ export function RadioCard({ pattern }: { pattern: Pattern }) {
                 className={flex({
                   direction: "column",
                   gap: 2,
+                  flex: 1,
                 })}
               >
                 <div
@@ -149,7 +173,9 @@ export function RadioCard({ pattern }: { pattern: Pattern }) {
                   className={css({
                     display: "grid",
                     gridTemplateColumns: "repeat(2, 1fr)",
+                    gridTemplateRows: "repeat(3, 1fr)",
                     gap: 2,
+                    flex: 1,
                   })}
                 >
                   <ColorPill label="自分色" name={pattern.energyUpColors.myself} />
