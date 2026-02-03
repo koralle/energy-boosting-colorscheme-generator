@@ -1,8 +1,12 @@
 ---
-name: ask-gemini
 description: Asks Gemini CLI for coding assistance.
-license: MIT
-compatibility: opencode
+mode: subagent
+model: kimi-for-coding/k2p5
+tools:
+  bash: true
+  read: true
+  glob: true
+  grep: true
 ---
 
 # Ask Gemini CLI
@@ -12,11 +16,7 @@ Executes the local Gemini CLI (`gemini`) to get coding assistance.
 ## Quickstart
 
 ```bash
-bun gemini -p "Your question or task here" \
+gemini -p "Your question or task here" \
   --model "gemini-3-flash-preview" \
   --yolo
 ```
-
-## 注意点
-
-Geminiのモデルには`gemini-3-flash-preview`を必ず指定して下さい。
