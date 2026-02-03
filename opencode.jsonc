@@ -5,10 +5,29 @@
       "type": "local",
       "command": ["bunx", "-y", "@upstash/context7-mcp"],
       "enabled": true
+    }
+  },
+  "autoupdate": false,
+  "formatter": {
+    "biome": {
+      "command": ["bun", "biome", "format", "$FILE", "--write"],
+      "extensions": [".js", ".jsx", ".ts", ".tsx", ".json", ".jsonc", ".css"]
+    }
+  },
+  "watcher": {
+    "ignore": ["node_modules", "dist/**", ".git/*"]
+  },
+  "permission": {
+    "skill": "allow",
+    "webfetch": "deny",
+    "question": "allow"
+  },
+  "agent": {
+    "plan": {
+      "model": "zai-coding-plan/glm-4.7"
     },
-    "panda": {
-      "type": "local",
-      "command": ["bunx", "panda", "mcp"]
+    "build": {
+      "model": "kimi-for-coding/k2p5"
     }
   }
 }
