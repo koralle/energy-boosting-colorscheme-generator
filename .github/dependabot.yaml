@@ -1,0 +1,25 @@
+version: 2
+updates:
+  # npm (Bun)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      time: '10:00'
+      interval: "weekly"
+      timezone: "Asia/Tokyo"
+    cooldown:
+      default-days: 7
+      semver-minor-days: 7
+      semver-patch-days: 7
+    open-pull-requests-limit: 10
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      time: '10:00'
+      interval: "weekly"
+      timezone: "Asia/Tokyo"
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 10
