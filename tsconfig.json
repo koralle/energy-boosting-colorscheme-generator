@@ -1,8 +1,28 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.node.json" },
-    { "path": "./tsconfig.cloudflare.json" },
-    { "path": "./tsconfig.vitest.json" }
-  ]
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.app.json",
+  "include": [
+    "src/**/*",
+    "styled-system",
+    "worker-configuration.d.ts",
+    "src/routeTree.gen.ts",
+    "vite.config.ts",
+    "panda.config.ts",
+    "postcss.config.ts",
+    ".storybook/**/*",
+    "**/*.stories.{ts,tsx}",
+    "**/*.test.{ts,tsx}",
+    "**/*.spec.{ts,tsx}",
+    "src/test/**/*.{ts,tsx}"
+  ],
+  "exclude": ["dist", "node_modules"],
+  "compilerOptions": {
+    "types": [
+      "vite/client",
+      "./worker-configuration.d.ts",
+      "node",
+      "vitest/globals",
+      "vitest/browser"
+    ]
+  }
 }

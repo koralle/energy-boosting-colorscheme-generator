@@ -9,7 +9,6 @@ import {
   type RouteIds,
   RouterProvider,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { getRouter } from "../router";
 
 const router = getRouter();

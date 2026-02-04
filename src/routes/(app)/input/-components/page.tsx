@@ -67,18 +67,12 @@ export function Page() {
             position: "fixed",
             top: "4",
             left: "50%",
-            transform: "translateX(-50%)",
             backgroundColor: "red.500",
             color: "white",
             padding: "3 6",
             borderRadius: "md",
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
             zIndex: "50",
-            animation: "fadeIn 0.3s ease",
-            "@keyframes fadeIn": {
-              "0%": { opacity: "0", transform: "translate(-50%, -10px)" },
-              "100%": { opacity: "1", transform: "translate(-50%, 0)" },
-            },
           })}
         >
           パターンを選択してください
