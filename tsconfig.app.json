@@ -1,0 +1,31 @@
+{
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "include": [
+    "src/**/*",
+    "styled-system",
+    "worker-configuration.d.ts",
+    "vite.config.ts",
+    "panda.config.ts",
+    "postcss.config.ts"
+  ],
+  "exclude": [
+    "src/**/*.stories.{ts,tsx}",
+    "**/*.test.{ts,tsx}",
+    "src/test/**/*.{ts,tsx}",
+    ".storybook/**/*",
+    "dist",
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "es2022"],
+    "types": ["vite/client", "./worker-configuration.d.ts", "node"],
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "exactOptionalPropertyTypes": false,
+    "erasableSyntaxOnly": true,
+    "noEmit": true
+  }
+}
