@@ -14,6 +14,13 @@ const preview: Preview = {
     viewport: {
       options: AWESOME_DEVICE_VIEWPORTS,
     },
+    a11y: {
+      context: "body",
+      config: {},
+      options: {
+        runOnly: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"],
+      },
+    },
   },
   decorators: [
     (storyFn) => (

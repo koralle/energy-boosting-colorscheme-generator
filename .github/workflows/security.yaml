@@ -7,6 +7,7 @@ on:
 
 jobs:
   pinact:
+    name: Run pinact
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
@@ -24,6 +25,7 @@ jobs:
           skip_push: true
 
   ghalint:
+    name: Run ghalint
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
@@ -48,6 +50,7 @@ jobs:
           ghalint run-action
 
   actionlint:
+    name: Run actionlint
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
@@ -71,6 +74,7 @@ jobs:
           actionlint
 
   safe-chain:
+    name: Scan with safe-chain
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
