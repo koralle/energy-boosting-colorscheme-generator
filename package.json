@@ -54,7 +54,7 @@
     "@types/node": "24.10.4",
     "@types/react": "19.2.8",
     "@types/react-dom": "19.2.3",
-    "@typescript/native-preview": "7.0.0-dev.20260112.1",
+    "@typescript/native-preview": "7.0.0-dev.20260128.1",
     "@vitejs/plugin-react": "5.1.2",
     "@vitest/browser-playwright": "4.0.17",
     "@vitest/coverage-v8": "4.0.17",
