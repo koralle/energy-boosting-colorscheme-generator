@@ -13,6 +13,7 @@ export function Layout({ children }: Readonly<LayoutProps>) {
         id="main"
         className={css({
           paddingX: "fluidXs",
+          paddingY: 3,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
