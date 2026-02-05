@@ -62,7 +62,7 @@
     "playwright": "1.57.0",
     "storybook": "10.1.11",
     "storybook-device-viewports": "0.1.2",
-    "vite": "8.0.0-beta.6",
+    "vite": "8.0.0-beta.11",
     "vitest": "4.0.17",
     "vitest-browser-react": "2.0.2",
     "wrangler": "4.59.1"
