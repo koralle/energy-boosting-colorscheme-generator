@@ -1,5 +1,8 @@
+import { Button } from "@base-ui/react";
 import { Link } from "@tanstack/react-router";
+import { Home } from "lucide-react";
 import { css } from "../../../../../styled-system/css";
+import { button } from "../../../../recipes/button.recipe";
 
 export function Page() {
   return (
@@ -60,28 +63,14 @@ export function Page() {
           alignItems: "center",
         })}
       >
-        <Link
-          to="/"
-          className={css({
-            display: "inline-block",
-            padding: "3 6",
-            backgroundColor: "primary",
-            color: "white",
-            fontWeight: "medium",
-            fontSize: "lg",
-            borderRadius: "md",
-            cursor: "pointer",
-            transition: "all 0.2s ease",
-            _hover: {
-              backgroundColor: "#6d28d9",
-            },
-            _active: {
-              transform: "scale(0.98)",
-            },
-          })}
+        <Button
+          render={
+            <Link to="/" className={button({ visual: "primary", size: "lg", fluid: true })} />
+          }
         >
-          ホームに戻る
-        </Link>
+          <Home size={20} />
+          <span className={css({ marginLeft: "8px" })}>ホームに戻る</span>
+        </Button>
       </div>
     </div>
   );

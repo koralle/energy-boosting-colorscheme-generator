@@ -50,6 +50,7 @@ export default defineConfig({
             "react",
             "react-dom",
             "valibot",
+            "@base-ui/react",
             "@tanstack/react-router",
             "@tanstack/react-devtools",
             "@tanstack/react-router-devtools",
