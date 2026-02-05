@@ -50,7 +50,13 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className={css({ paddingY: 2 })}>
+    <footer
+      className={css({
+        paddingY: 2,
+        borderTopWidth: "1px",
+        borderTopColor: "gray.100",
+      })}
+    >
       <p className={css({ textAlign: "center" })}>&copy; 2025 koralle. All rights reserved.</p>
     </footer>
   );
