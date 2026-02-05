@@ -1,5 +1,7 @@
+import { Button } from "@base-ui/react/button";
 import { Link } from "@tanstack/react-router";
 import { css } from "../../../styled-system/css";
+import { button as buttonRecipe } from "../../recipes/button.recipe";
 
 export function Page() {
   return (
@@ -41,28 +43,12 @@ export function Page() {
       </header>
 
       {/* 開始ボタン */}
-      <Link
-        to="/input"
-        className={css({
-          display: "inline-block",
-          padding: "4 8",
-          backgroundColor: "primary",
-          color: "white",
-          fontWeight: "medium",
-          fontSize: "lg",
-          borderRadius: "md",
-          cursor: "pointer",
-          transition: "all 0.2s ease",
-          _hover: {
-            backgroundColor: "#6d28d9",
-          },
-          _active: {
-            transform: "scale(0.98)",
-          },
-        })}
+      <Button
+        render={<Link to="/input" />}
+        className={buttonRecipe({ visual: "primary", size: "lg" })}
       >
         鑑定書作成を開始する
-      </Link>
+      </Button>
     </div>
   );
 }

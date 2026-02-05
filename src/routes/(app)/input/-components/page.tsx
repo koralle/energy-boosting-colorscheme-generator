@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { css } from "../../../../../styled-system/css";
+import { Button } from "@base-ui/react";
+import { button } from "../../../../recipes/button.recipe";
 import { PATTERNS } from "../../../../constants/patterns";
 import type { Pattern } from "../../../../types/pattern";
 
@@ -36,18 +38,13 @@ export function Page() {
           gap: "4",
         })}
       >
-        <Link
-          to="/"
-          className={css({
-            padding: "2",
-            color: "text.secondary",
-            _hover: {
-              color: "primary",
-            },
-          })}
+        <Button
+          render={
+            <Link to="/" className={button({ visual: "secondary", size: "sm", fluid: false })} />
+          }
         >
           ← 戻る
-        </Link>
+        </Button>
         <h1
           className={css({
             fontSize: { base: "xl", md: "2xl" },
@@ -201,27 +198,12 @@ export function Page() {
           justifyContent: "center",
         })}
       >
-        <button
-          type="button"
+        <Button
           onClick={handleNext}
-          className={css({
-            padding: "3 6",
-            backgroundColor: "primary",
-            color: "white",
-            fontWeight: "medium",
-            borderRadius: "md",
-            cursor: "pointer",
-            transition: "all 0.2s ease",
-            _hover: {
-              backgroundColor: "#6d28d9",
-            },
-            _active: {
-              transform: "scale(0.98)",
-            },
-          })}
+          className={button({ visual: "primary", size: "lg", fluid: false })}
         >
           次へ
-        </button>
+        </Button>
       </section>
     </div>
   );
