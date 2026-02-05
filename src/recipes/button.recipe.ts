@@ -9,6 +9,7 @@ export const button = cva({
     cursor: "pointer",
     textAlign: "center",
     touchAction: "manipulation",
+    minInlineSize: "fit-content",
     _before: {
       content: '""',
       position: "absolute",
@@ -61,7 +62,7 @@ export const button = cva({
         borderRadius: "8px",
       },
       lg: {
-        padding: "token(spacing.2) token(spacing.6)",
+        padding: "token(spacing.2) token(spacing.4)",
         fontSize: "h5",
         fontWeight: "bold",
         borderRadius: "12px",
