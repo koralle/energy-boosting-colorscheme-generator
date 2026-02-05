@@ -68,9 +68,18 @@ export const button = cva({
         borderRadius: "12px",
       },
     },
+    fluid: {
+      true: {
+        width: "stretch",
+      },
+      false: {
+        width: "fit-content",
+      },
+    },
   },
   defaultVariants: {
     visual: "primary",
     size: "sm",
+    fluid: false,
   },
 });
