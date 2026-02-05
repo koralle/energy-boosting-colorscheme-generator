@@ -45,12 +45,13 @@ export const button = cva({
       },
       secondary: {
         backgroundColor: "white",
-        color: "gray.800",
+        color: "gray.700",
         border: "1px solid",
-        borderColor: "gray.800",
+        borderColor: "gray.300",
         "@media (any-hover: hover)": {
           _hover: {
             backgroundColor: "gray.50",
+            borderColor: "gray.400",
           },
         },
       },
