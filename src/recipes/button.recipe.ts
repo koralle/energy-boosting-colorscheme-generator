@@ -36,7 +36,7 @@ export const button = cva({
         backgroundColor: "primary.500",
         color: "white",
         border: "none",
-        boxShadow: "0 4px 14px rgba(0, 0, 0, 0.15)",
+        boxShadow: "0 1px 2px oklch(0.603 0.139 90 / 0.15), 0 4px 8px oklch(0.603 0.139 90 / 0.1)",
         "@media (any-hover: hover)": {
           _hover: {
             backgroundColor: "primary.600",
