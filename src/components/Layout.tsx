@@ -28,7 +28,20 @@ export function Layout({ children }: Readonly<LayoutProps>) {
 
 function Header() {
   return (
-    <header className={css({ paddingY: 4, paddingX: 4 })}>
+    <header
+      className={css({
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
+        paddingY: 2,
+        paddingX: 2,
+        backgroundColor: "color-mix(in srgb, white 80%, transparent)",
+        backdropFilter: "blur(8px)",
+        borderBottomWidth: "1px",
+        borderBottomColor: "gray.200",
+        boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+      })}
+    >
       <p>鑑定ツール</p>
     </header>
   );
