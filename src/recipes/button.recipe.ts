@@ -59,13 +59,12 @@ export const button = cva({
     size: {
       sm: {
         padding: "token(spacing.1) token(spacing.2)",
-        fontSize: "caption",
+        textStyle: "buttonSm",
         borderRadius: "8px",
       },
       lg: {
         padding: "token(spacing.2) token(spacing.4)",
-        fontSize: "h5",
-        fontWeight: "bold",
+        textStyle: "buttonLg",
         borderRadius: "12px",
       },
     },

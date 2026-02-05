@@ -68,6 +68,22 @@ export default defineConfig({
           },
         },
       },
+      textStyles: {
+        buttonSm: {
+          value: {
+            fontSize: "{fontSizes.caption}",
+            fontWeight: "400",
+            lineHeight: "1.5",
+          },
+        },
+        buttonLg: {
+          value: {
+            fontSize: "{fontSizes.h5}",
+            fontWeight: "700",
+            lineHeight: "1.4",
+          },
+        },
+      },
       semanticTokens: {
         spacing: {
           // 固定値の余白
@@ -120,6 +136,12 @@ export default defineConfig({
           },
           h6: {
             value: "clamp(0.844rem, 0.563rem + 1.125vw, 1.125rem)",
+          },
+          buttonSm: {
+            value: "{fontSizes.caption}",
+          },
+          buttonLg: {
+            value: "{fontSizes.h5}",
           },
         },
       },
