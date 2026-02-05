@@ -7,7 +7,6 @@ export const button = cva({
     columnGap: 1,
     position: "relative",
     cursor: "pointer",
-    transition: "all 0.2s ease-in-out",
     textAlign: "center",
     touchAction: "manipulation",
     _before: {
@@ -27,7 +26,6 @@ export const button = cva({
       outlineOffset: "2px",
     },
     "@media (prefers-reduced-motion: reduce)": {
-      transition: "none",
       transform: "none !important",
     },
   },
@@ -41,11 +39,7 @@ export const button = cva({
         "@media (any-hover: hover)": {
           _hover: {
             backgroundColor: "primary.600",
-            transform: "translateY(-1px)",
           },
-        },
-        _active: {
-          transform: "translateY(0)",
         },
       },
       secondary: {
@@ -56,9 +50,6 @@ export const button = cva({
           _hover: {
             backgroundColor: "gray.50",
           },
-        },
-        _active: {
-          backgroundColor: "gray.100",
         },
       },
     },
