@@ -1,7 +1,7 @@
+import { Button } from "@base-ui/react";
 import { Link } from "@tanstack/react-router";
 import { Home } from "lucide-react";
 import { css } from "../../../../../styled-system/css";
-import { Button } from "@base-ui/react";
 import { button } from "../../../../recipes/button.recipe";
 
 export function Page() {

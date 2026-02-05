@@ -1,10 +1,10 @@
-import { Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { css } from "../../../../../styled-system/css";
 import { Button } from "@base-ui/react";
-import { button } from "../../../../recipes/button.recipe";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { css } from "../../../../../styled-system/css";
 import { PATTERNS } from "../../../../constants/patterns";
+import { button } from "../../../../recipes/button.recipe";
 import type { Pattern } from "../../../../types/pattern";
 
 export function Page() {

@@ -1,9 +1,9 @@
+import { Button } from "@base-ui/react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { css } from "../../../../../styled-system/css";
-import { Button } from "@base-ui/react";
-import { button } from "../../../../recipes/button.recipe";
 import { PATTERNS } from "../../../../constants/patterns";
+import { button } from "../../../../recipes/button.recipe";
 import { FortunePaper } from "./FortunePaper";
 
 interface PageProps {
