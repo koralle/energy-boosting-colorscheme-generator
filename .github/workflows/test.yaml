@@ -1,0 +1,39 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "src/**/*.{ts,tsx}"
+      - ".storybook/**/*.{ts,tsx}"
+      - "vite.config.ts"
+      - "vitest.config.ts"
+      - "panda.config.ts"
+      - "postcss.config.ts"
+
+jobs:
+  ui-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Setup
+        uses: ./.github/composite-actions/cache-and-install
+
+      - name: Prepare Playwright
+        shell: bash
+        run: |
+          bun playwright install --with-deps
+
+      - name: UI Test
+        shell: bash
+        run: |
+          bun run test:storybook

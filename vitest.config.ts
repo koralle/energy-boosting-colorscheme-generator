@@ -45,6 +45,16 @@ export default defineConfig({
             storybookScript: "bun storybook --no-open --port 6666",
           }),
         ],
+        optimizeDeps: {
+          include: [
+            "react",
+            "react-dom",
+            "valibot",
+            "@tanstack/react-router",
+            "@tanstack/react-devtools",
+            "@tanstack/react-router-devtools",
+          ],
+        },
         test: {
           name: "storybook",
           browser: {
