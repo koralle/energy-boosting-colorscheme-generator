@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Home } from "lucide-react";
 import { css } from "../../../../../styled-system/css";
 import { Button } from "@base-ui/react";
 import { button } from "../../../../recipes/button.recipe";
@@ -67,7 +68,8 @@ export function Page() {
             <Link to="/" className={button({ visual: "primary", size: "lg", fluid: true })} />
           }
         >
-          ホームに戻る
+          <Home size={20} />
+          <span className={css({ marginLeft: "8px" })}>ホームに戻る</span>
         </Button>
       </div>
     </div>

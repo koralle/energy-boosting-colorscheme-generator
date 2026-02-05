@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { css } from "../../../../../styled-system/css";
 import { Button } from "@base-ui/react";
 import { button } from "../../../../recipes/button.recipe";
@@ -202,7 +203,8 @@ export function Page() {
           onClick={handleNext}
           className={button({ visual: "primary", size: "lg", fluid: false })}
         >
-          次へ
+          <span>次へ</span>
+          <ArrowRight size={20} />
         </Button>
       </section>
     </div>

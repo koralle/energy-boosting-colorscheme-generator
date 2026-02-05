@@ -1,5 +1,6 @@
 import { Button } from "@base-ui/react/button";
 import { Link } from "@tanstack/react-router";
+import { Plus } from "lucide-react";
 import { css } from "../../../styled-system/css";
 import { button as buttonRecipe } from "../../recipes/button.recipe";
 
@@ -47,7 +48,8 @@ export function Page() {
         render={<Link to="/input" />}
         className={buttonRecipe({ visual: "primary", size: "lg" })}
       >
-        鑑定書作成を開始する
+        <Plus size={20} />
+        <span className={css({ marginLeft: "8px" })}>鑑定書作成を開始する</span>
       </Button>
     </div>
   );

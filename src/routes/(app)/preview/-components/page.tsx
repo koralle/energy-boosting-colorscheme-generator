@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { css } from "../../../../../styled-system/css";
 import { Button } from "@base-ui/react";
 import { button } from "../../../../recipes/button.recipe";
@@ -108,7 +109,8 @@ export function Page({ patternId }: PageProps) {
           onClick={handlePrint}
           className={button({ visual: "primary", size: "lg", fluid: false })}
         >
-          印刷して完了
+          <span>印刷して完了</span>
+          <ArrowRight size={20} />
         </Button>
       </section>
 
