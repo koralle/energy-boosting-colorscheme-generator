@@ -1,7 +1,7 @@
 version: 2
 updates:
   # npm (Bun)
-  - package-ecosystem: "npm"
+  - package-ecosystem: "bun"
     directory: "/"
     schedule:
       time: '10:00'
