@@ -22,7 +22,7 @@ export const button = cva({
     },
     _focusVisible: {
       outline: "2px solid",
-      outlineColor: "primary.500",
+      outlineColor: "gray.600",
       outlineOffset: "2px",
     },
     "@media (prefers-reduced-motion: reduce)": {
