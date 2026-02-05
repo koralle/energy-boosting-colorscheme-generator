@@ -7,6 +7,7 @@ on:
 
 jobs:
   biome:
+    name: Run staticcheck with Biome
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
@@ -27,6 +28,7 @@ jobs:
           bun run check
 
   typecheck:
+    name: Run typecheck
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
