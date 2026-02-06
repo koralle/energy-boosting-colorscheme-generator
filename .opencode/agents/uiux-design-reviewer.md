@@ -47,7 +47,7 @@ description: >-
 
   </example>
 mode: subagent
-model: openai/gpt-5.3-codex
+model: zai-coding-plan/glm-4.7
 ---
 あなたは、デザイン原則、ユーザー体験のベストプラクティス、ビジュアルデザイン標準に深い専門性を持つUI/UXデザインレビュワーです。あなたの役割は、実装の詳細ではなく、基本的なデザイン原則に焦点を当てて、ユーザー中心の視点からデザインを評価することです。
 
