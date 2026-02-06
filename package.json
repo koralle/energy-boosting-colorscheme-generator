@@ -52,7 +52,7 @@
     "@tanstack/react-router-devtools": "1.157.16",
     "@tanstack/react-start": "1.157.16",
     "@tsconfig/strictest": "2.0.8",
-    "@types/node": "24.10.4",
+    "@types/node": "25.1.0",
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
     "@typescript/native-preview": "7.0.0-dev.20260128.1",
