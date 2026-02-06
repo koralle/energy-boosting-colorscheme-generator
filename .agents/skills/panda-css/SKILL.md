@@ -1,6 +1,13 @@
 ---
 name: panda-css
-description: Panda CSS for styling UI components, design systems, and theming. Use when Claude needs to work with Panda CSS for: (1) Creating styled components with css/styled factory functions, (2) Implementing responsive design with breakpoints and container queries, (3) Configuring themes, design tokens, and semantic tokens, (4) Building consistent design systems with recipes and patterns, (5) Adding animations and transitions, or any other styling tasks in projects using Panda CSS
+description: 
+  Panda CSS for styling UI components, design systems, and theming. 
+  Use when Claude needs to work with Panda CSS for...
+    (1) Creating styled components with css/styled factory functions,
+    (2) Implementing responsive design with breakpoints and container queries,
+    (3) Configuring themes, design tokens, and semantic tokens, 
+    (4) Building consistent design systems with recipes and patterns,
+    (5) Adding animations and transitions, or any other styling tasks in projects using Panda CSS
 ---
 
 # Panda CSS

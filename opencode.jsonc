@@ -9,7 +9,7 @@
     "chrome-devtools": {
       "type": "local",
       "command": ["chrome-devtools-mcp"],
-      "enabled": true
+      "enabled": false
     }
   },
   "autoupdate": false,
@@ -29,10 +29,10 @@
   },
   "agent": {
     "plan": {
-      "model": "zai-coding-plan/glm-4.7"
+      "model": "openai/gpt-5.3-codex"
     },
     "build": {
-      "model": "kimi-for-coding/k2p5"
+      "model": "zai-coding-plan/glm-4.7"
     }
   }
 }
