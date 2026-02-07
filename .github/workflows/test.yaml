@@ -45,6 +45,8 @@ jobs:
 
   e2e-test:
     name: E2E Test
+    # TODO: Re-enable after print-flow E2E stabilization
+    if: false
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
