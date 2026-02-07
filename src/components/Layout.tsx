@@ -44,8 +44,8 @@ function Header() {
         backgroundColor: "color-mix(in srgb, white 80%, transparent)",
         backdropFilter: "blur(8px)",
         borderBottomWidth: "1px",
-        borderBottomColor: "gray.200",
-        boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+        borderBottomColor: "gray.50",
+        boxShadow: "0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.06)",
       })}
     >
       <p>鑑定ツール</p>
