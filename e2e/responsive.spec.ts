@@ -1,0 +1,54 @@
+import { expect, test } from "@playwright/test";
+
+test("入力画面を表示したとき、タッチターゲットが44px以上であること", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/input");
+
+  const nextButton = page.getByRole("button", { name: "次へ" });
+  await expect(nextButton).toBeVisible();
+  const nextButtonBox = await nextButton.boundingBox();
+  expect(nextButtonBox).not.toBeNull();
+  expect(nextButtonBox!.width).toBeGreaterThanOrEqual(44);
+  expect(nextButtonBox!.height).toBeGreaterThanOrEqual(44);
+
+  const pattern1Button = page.getByRole("button", { name: /^パターン 1$/ });
+  await expect(pattern1Button).toBeVisible();
+  const pattern1ButtonBox = await pattern1Button.boundingBox();
+  expect(pattern1ButtonBox).not.toBeNull();
+  expect(pattern1ButtonBox!.width).toBeGreaterThanOrEqual(44);
+  expect(pattern1ButtonBox!.height).toBeGreaterThanOrEqual(44);
+});
+
+test("プレビュー画面を開いたとき、手書き欄のラベルが表示されること", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "鑑定書作成を開始する" }).click();
+
+  const patternButton = page.getByRole("button", { name: /^パターン 2$/ });
+  await expect(async () => {
+    await patternButton.click();
+    await expect(page.getByText(/選択中:\s*パターン\s*2/)).toBeVisible({ timeout: 1000 });
+  }).toPass({ timeout: 10000 });
+
+  const nextButton = page.getByRole("button", { name: "次へ" });
+  await expect(async () => {
+    await nextButton.click();
+    await expect(page).toHaveURL(/\/preview\?patternId=2(?:$|&)/, { timeout: 1000 });
+  }).toPass({ timeout: 10000 });
+
+  await expect(page.getByText("名前")).toBeVisible();
+  await expect(page.getByText("生年月日")).toBeVisible();
+  await expect(page.getByText("守護色")).toBeVisible();
+  await expect(page.getByText("今年のラッキーカラー")).toBeVisible();
+  await expect(page.getByText("今年のタブーカラー")).toBeVisible();
+});
+
+test("入力画面を表示したとき、横スクロールが発生しないこと", async ({ page }) => {
+  await page.goto("/input");
+
+  const hasNoHorizontalOverflow = await page.evaluate(() => {
+    const root = document.documentElement;
+    return root.scrollWidth <= root.clientWidth + 1;
+  });
+
+  expect(hasNoHorizontalOverflow).toBe(true);
+});
