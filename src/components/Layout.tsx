@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { css } from "../../styled-system/css";
+import { flex } from "../../styled-system/patterns";
 
 interface LayoutProps {
   children: ReactNode;
@@ -7,14 +8,18 @@ interface LayoutProps {
 
 export function Layout({ children }: Readonly<LayoutProps>) {
   return (
-    <>
+    <div
+      className={flex({
+        minBlockSize: "100svh",
+        flexDirection: "column",
+      })}
+    >
       <Header />
       <main
         id="main"
-        className={css({
+        className={flex({
           paddingX: "fluidXs",
           paddingY: 3,
-          display: "flex",
           flexDirection: "column",
           alignItems: "center",
           flex: 1,
@@ -23,7 +28,7 @@ export function Layout({ children }: Readonly<LayoutProps>) {
         {children}
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 
