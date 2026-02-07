@@ -20,6 +20,22 @@ export default defineConfig({
       name: "webkit",
       use: { ...devices["Desktop Safari"] },
     },
+    {
+      name: "mobile-pixel-7",
+      use: { ...devices["Pixel 7"] },
+    },
+    {
+      name: "mobile-iphone-15",
+      use: { ...devices["iPhone 15"] },
+    },
+    {
+      name: "tablet-ipad-gen11",
+      use: { ...devices["iPad (gen 11)"] },
+    },
+    {
+      name: "tablet-ipad-gen11-landscape",
+      use: { ...devices["iPad (gen 11) landscape"] },
+    },
   ],
   webServer: {
     command: "bun vite dev --host 127.0.0.1 --port 6777",
