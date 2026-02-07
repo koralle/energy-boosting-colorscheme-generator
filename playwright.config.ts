@@ -40,6 +40,6 @@ export default defineConfig({
   webServer: {
     command: "bun vite dev --host 127.0.0.1 --port 6777",
     url: "http://127.0.0.1:6777",
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !process.env["CI"],
   },
 });
