@@ -23,3 +23,7 @@ storybook-static
 
 # Panda CSS
 /styled-system/
+
+# Playwright
+/playwright-report/
+/test-results/

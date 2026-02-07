@@ -20,6 +20,7 @@
         "@cloudflare/vite-plugin": "1.22.1",
         "@pandacss/dev": "1.8.1",
         "@pandacss/studio": "1.8.1",
+        "@playwright/test": "1.58.1",
         "@storybook/addon-a11y": "10.1.11",
         "@storybook/addon-docs": "10.1.11",
         "@storybook/addon-onboarding": "10.1.11",
@@ -360,6 +361,8 @@
     "@pandacss/token-dictionary": ["@pandacss/token-dictionary@1.8.1", "", { "dependencies": { "@pandacss/logger": "^1.8.1", "@pandacss/shared": "1.8.1", "@pandacss/types": "1.8.1", "picomatch": "^4.0.0", "ts-pattern": "5.9.0" } }, "sha512-6uDH/QbxE/sS/QzfaSswxa+hMdDR1U3PUGVD/uCrt3tJ4zTHgR2icZ3vH9GN9k17WFutzcVQaKTKscY3PYn9TA=="],
 
     "@pandacss/types": ["@pandacss/types@1.8.1", "", {}, "sha512-5hNn6PsbmSWdHmfETGTGW+gpFmzf0xdKlzbFHIIKHZK+zicCtHIg6iMahZsf9wvYiBu0LAKwgdKR+kDMya5N8w=="],
+
+    "@playwright/test": ["@playwright/test@1.58.1", "", { "dependencies": { "playwright": "1.58.1" }, "bin": { "playwright": "cli.js" } }, "sha512-6LdVIUERWxQMmUSSQi0I53GgCBYgM2RpGngCPY7hSeju+VrKjq3lvs7HpJoPbDiY5QM5EYRtRX5fvrinnMAz3w=="],
 
     "@polka/url": ["@polka/url@1.0.0-next.29", "", {}, "sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww=="],
 
