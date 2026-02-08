@@ -6,11 +6,15 @@ on:
       - main
     paths:
       - "src/**/*.{ts,tsx}"
+      - "e2e/**/*.{ts,tsx}"
       - ".storybook/**/*.{ts,tsx}"
+      - "playwright.config.ts"
       - "vite.config.ts"
       - "vitest.config.ts"
       - "panda.config.ts"
       - "postcss.config.ts"
+      - "package.json"
+      - "bun.lock"
 
 jobs:
   ui-test:

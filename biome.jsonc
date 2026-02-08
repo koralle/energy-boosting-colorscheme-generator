@@ -12,11 +12,13 @@
       "src/**/*.{ts,tsx}",
       "vite.config.ts",
       "vitest.config.ts",
+      "playwright.config.ts",
       "react-router.config.ts",
       "worker-configuration.d.ts",
       "workers/app.ts",
       "panda.config.ts",
       "postcss.config.ts",
+      "e2e/**/*.{ts,tsx}",
       ".storybook/**/*.{ts,tsx}",
 
       // JSON
