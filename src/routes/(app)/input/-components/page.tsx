@@ -60,8 +60,7 @@ export function Page() {
           className={css({
             fontSize: { base: "xl", md: "2xl" },
             fontWeight: "bold",
-            color: "primary",
-            fontFamily: "serif",
+            color: "gray.800",
           })}
         >
           パターンを選択
