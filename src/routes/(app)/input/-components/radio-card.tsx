@@ -5,7 +5,12 @@ import { flex } from "../../../../../styled-system/patterns";
 import { getColorCode } from "../../../../constants/colors";
 import type { ColorName, Pattern } from "../../../../types/pattern";
 
-function ColorPill({ label, name }: { label: string; name: ColorName }) {
+interface ColorPillProps {
+  label: string
+  name: ColorName
+}
+
+function ColorPill({ label, name }: Readonly<ColorPillProps>) {
   return (
     <div
       className={flex({
@@ -49,7 +54,11 @@ function ColorPill({ label, name }: { label: string; name: ColorName }) {
   );
 }
 
-function SimpleColorPill({ name }: { name: ColorName }) {
+interface SimpleColorPillProps {
+  name: ColorName
+}
+
+function SimpleColorPill({ name }: Readonly<SimpleColorPillProps>) {
   return (
     <div className={flex({ align: "center", gap: 1.5 })}>
       <span
@@ -68,7 +77,11 @@ function SimpleColorPill({ name }: { name: ColorName }) {
   );
 }
 
-export function RadioCard({ pattern }: { pattern: Pattern }) {
+interface RadioCardProps {
+  pattern: Pattern
+}
+
+export function RadioCard({ pattern }: Readonly<RadioCardProps>) {
   return (
     <Radio.Root
       value={String(pattern.id)}
