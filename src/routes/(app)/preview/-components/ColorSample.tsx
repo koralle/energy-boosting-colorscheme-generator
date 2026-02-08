@@ -1,13 +1,13 @@
 import { css } from "../../../../../styled-system/css";
-import { getColorCode } from "../../../../constants/colors";
-import type { ColorName } from "../../../../types/pattern";
+import { getColorCode, getColorLabel } from "../../../../constants/colors";
+import type { ColorKey } from "../../../../types/pattern";
 
 /**
  * 色見本コンポーネントのプロパティ
  */
 interface ColorSampleProps {
   /** 色名 */
-  colorName: ColorName;
+  colorName: ColorKey;
   /** サイズバリアント */
   size?: "sm" | "md" | "lg";
   /** 色名を表示するかどうか */
@@ -22,6 +22,7 @@ interface ColorSampleProps {
  */
 export function ColorSample({ colorName, size = "md", showLabel = true }: ColorSampleProps) {
   const colorCode = getColorCode(colorName);
+  const colorLabel = getColorLabel(colorName);
 
   const sizeStyles = {
     sm: { width: "32px", height: "32px", fontSize: "10px" },
@@ -60,7 +61,7 @@ export function ColorSample({ colorName, size = "md", showLabel = true }: ColorS
             },
           },
         })}
-        aria-label={`${colorName}の色見本`}
+        aria-label={`${colorLabel}の色見本`}
       />
       {showLabel && (
         <span
@@ -71,7 +72,7 @@ export function ColorSample({ colorName, size = "md", showLabel = true }: ColorS
             textAlign: "center",
           })}
         >
-          {colorName}
+          {colorLabel}
         </span>
       )}
     </div>

@@ -1,8 +1,8 @@
 import { Radio } from "@base-ui/react/radio";
 import { Check, Circle } from "lucide-react";
-import { css, sva } from "../../../../../styled-system/css";
+import { css } from "../../../../../styled-system/css";
 import { flex } from "../../../../../styled-system/patterns";
-import type { ColorName, Pattern } from "../../../../types/pattern";
+import type { Pattern } from "../../../../types/pattern";
 import { ColorBadge } from "./color-badge";
 
 const ENERGY_UP_COLOR_ITEMS: ReadonlyArray<{
@@ -16,7 +16,6 @@ const ENERGY_UP_COLOR_ITEMS: ReadonlyArray<{
   { key: "health", label: "健康色" },
   { key: "economy", label: "経済色" },
 ];
-
 
 interface RadioCardProps {
   pattern: Pattern;

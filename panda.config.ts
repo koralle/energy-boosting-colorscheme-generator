@@ -1,4 +1,12 @@
 import { defineConfig } from "@pandacss/dev";
+import { ENERGY_COLOR_DEFINITIONS } from "./src/constants/energy-colors";
+
+const ENERGY_COLOR_TOKENS = Object.fromEntries(
+  Object.entries(ENERGY_COLOR_DEFINITIONS).map(([key, definition]) => [
+    key,
+    { value: definition.hex },
+  ]),
+);
 
 export default defineConfig({
   // Whether to use css reset
@@ -15,6 +23,7 @@ export default defineConfig({
     extend: {
       tokens: {
         colors: {
+          energy: ENERGY_COLOR_TOKENS,
           primary: {
             // 知覚的に均一なゴールドスケール
             // 各ステップ間のΔE ≈ 0.076-0.080 (CV: 0.0245)

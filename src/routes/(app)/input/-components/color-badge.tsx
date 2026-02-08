@@ -1,11 +1,11 @@
 import { css } from "../../../../../styled-system/css/css";
 import { flex } from "../../../../../styled-system/patterns";
-import { getColorCode } from "../../../../constants/colors";
-import type { ColorName } from "../../../../types/pattern";
+import { getColorCode, getColorLabel } from "../../../../constants/colors";
+import type { ColorKey } from "../../../../types/pattern";
 
 interface ColorBadgeProps {
   label: string;
-  name: ColorName;
+  name: ColorKey;
 }
 
 export function ColorBadge({ label, name }: Readonly<ColorBadgeProps>) {
@@ -45,7 +45,9 @@ export function ColorBadge({ label, name }: Readonly<ColorBadgeProps>) {
           })}
           style={{ backgroundColor: getColorCode(name) }}
         />
-        <span className={css({ fontSize: "body", fontWeight: "medium" })}>{name}</span>
+        <span className={css({ fontSize: "body", fontWeight: "medium" })}>
+          {getColorLabel(name)}
+        </span>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import * as v from "valibot";
+import { ENERGY_COLOR_KEYS } from "../constants/energy-colors";
 
 /**
  * エネルギーUP色の種類
@@ -16,34 +17,19 @@ export type EnergyUpColorType = v.InferOutput<typeof energyUpColorTypeSchema>;
 /**
  * 色の定義
  */
-export const colorNameSchema = v.union([
-  v.literal("ピンク"),
-  v.literal("レッド"),
-  v.literal("ベージュ"),
-  v.literal("ブラウン"),
-  v.literal("パープル"),
-  v.literal("イエロー"),
-  v.literal("イエローグリーン"),
-  v.literal("ワイン"),
-  v.literal("ネイビーブルー"),
-  v.literal("ブラック"),
-  v.literal("グリーン"),
-  v.literal("ブルー"),
-  v.literal("グレー"),
-  v.literal("ディープグリーン"),
-]);
-export type ColorName = v.InferOutput<typeof colorNameSchema>;
+export const colorKeySchema = v.picklist(ENERGY_COLOR_KEYS);
+export type ColorKey = v.InferOutput<typeof colorKeySchema>;
 
 /**
  * タブー色（薬色）
  */
 export const tabooColorSchema = v.union([
-  v.literal("ブルー"),
-  v.literal("グリーン"),
-  v.literal("イエロー"),
-  v.literal("レッド"),
-  v.literal("ブラウン"),
-  v.literal("パープル"),
+  v.literal("blue"),
+  v.literal("green"),
+  v.literal("yellow"),
+  v.literal("red"),
+  v.literal("brown"),
+  v.literal("purple"),
 ]);
 export type TabooColor = v.InferOutput<typeof tabooColorSchema>;
 
@@ -109,17 +95,17 @@ export type PatternId = v.InferOutput<typeof patternIdSchema>;
  */
 export const energyUpColorsSchema = v.object({
   /** 自分色 */
-  myself: colorNameSchema,
+  myself: colorKeySchema,
   /** やる気色 */
-  motivation: colorNameSchema,
+  motivation: colorKeySchema,
   /** 精神安定色 */
-  mentalStability: colorNameSchema,
+  mentalStability: colorKeySchema,
   /** 決断色 */
-  decision: colorNameSchema,
+  decision: colorKeySchema,
   /** 健康色 */
-  health: colorNameSchema,
+  health: colorKeySchema,
   /** 経済色 */
-  economy: colorNameSchema,
+  economy: colorKeySchema,
 });
 export type EnergyUpColors = v.InferOutput<typeof energyUpColorsSchema>;
 
