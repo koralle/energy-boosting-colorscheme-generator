@@ -181,7 +181,7 @@ export const PATTERNS: readonly Pattern[] = [
       mentalStability: "brown",
       decision: "green",
       health: "yellowGreen",
-      economy: "pink",
+      economy: "beige",
     },
     tabooColor: "purple",
     interiorPattern: 12,
