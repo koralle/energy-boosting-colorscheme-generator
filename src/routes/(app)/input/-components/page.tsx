@@ -70,66 +70,46 @@ export function Page() {
 
       {/* 選択状態表示エリア */}
       <form.Subscribe selector={(state) => state.values.patternId}>
-        {(patternId) => (
-          <section
-            className={css({
-              marginBottom: 6,
-            })}
-          >
-            <div
-              className={css({
-                marginBottom: "4",
-                padding: "3",
-                backgroundColor: "primary",
-                color: "white",
-                borderRadius: "md",
-                display: "flex",
-                alignItems: "center",
-                gap: "2",
-              })}
-            >
-              <span className={css({ fontSize: "xl" })}>✓</span>
-              <span>
-                <span className={css({ fontWeight: "bold" })}>選択中:</span> パターン {patternId}
-              </span>
-            </div>
-
-            <form.Field name="patternId">
-              {({ state, handleChange }) => (
-                <fieldset
+        <section
+          className={css({
+            marginBottom: 6,
+          })}
+        >
+          <form.Field name="patternId">
+            {({ state, handleChange }) => (
+              <fieldset
+                className={css({
+                  border: "none",
+                  padding: 0,
+                  margin: 0,
+                })}
+              >
+                <legend className={css({ srOnly: true })}>パターンを選択してください</legend>
+                <RadioGroup
+                  value={String(state.value)}
+                  onValueChange={(value) => {
+                    const numValue = Number(value);
+                    const parsedValue = v.parse(patternIdSchema, numValue);
+                    handleChange(parsedValue);
+                  }}
                   className={css({
-                    border: "none",
-                    padding: 0,
-                    margin: 0,
+                    display: "grid",
+                    gridTemplateColumns: {
+                      base: "1fr",
+                      md: "repeat(2, 1fr)",
+                      lg: "repeat(3, 1fr)",
+                    },
+                    gap: 4,
                   })}
                 >
-                  <legend className={css({ srOnly: true })}>パターンを選択してください</legend>
-                  <RadioGroup
-                    value={String(state.value)}
-                    onValueChange={(value) => {
-                      const numValue = Number(value);
-                      const parsedValue = v.parse(patternIdSchema, numValue);
-                      handleChange(parsedValue);
-                    }}
-                    className={css({
-                      display: "grid",
-                      gridTemplateColumns: {
-                        base: "1fr",
-                        md: "repeat(2, 1fr)",
-                        lg: "repeat(3, 1fr)",
-                      },
-                      gap: 4,
-                    })}
-                  >
-                    {PATTERNS.map((pattern: Pattern) => (
-                      <RadioCard key={pattern.id} pattern={pattern} />
-                    ))}
-                  </RadioGroup>
-                </fieldset>
-              )}
-            </form.Field>
-          </section>
-        )}
+                  {PATTERNS.map((pattern: Pattern) => (
+                    <RadioCard key={pattern.id} pattern={pattern} />
+                  ))}
+                </RadioGroup>
+              </fieldset>
+            )}
+          </form.Field>
+        </section>
       </form.Subscribe>
 
       {/* 操作ボタンエリア */}
