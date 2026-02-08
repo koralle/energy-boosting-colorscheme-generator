@@ -58,30 +58,3 @@ export function getColorDescription(colorName: ColorName): string | undefined {
 export function getAllColorNames(): ColorName[] {
   return Object.keys(COLOR_PALETTE) as ColorName[];
 }
-
-/**
- * PandaCSS domain token paths mapped to Japanese color names
- */
-export const COLOR_TOKEN_MAP: Record<ColorName, string> = {
-  ピンク: "colors.domain.pink",
-  レッド: "colors.domain.red",
-  ワイン: "colors.domain.wine",
-  イエロー: "colors.domain.yellow",
-  イエローグリーン: "colors.domain.yellowGreen",
-  ベージュ: "colors.domain.beige",
-  ブラウン: "colors.domain.brown",
-  パープル: "colors.domain.purple",
-  ブルー: "colors.domain.blue",
-  ネイビーブルー: "colors.domain.navyBlue",
-  グリーン: "colors.domain.green",
-  ディープグリーン: "colors.domain.deepGreen",
-  ブラック: "colors.domain.black",
-  グレー: "colors.domain.gray",
-} as const;
-
-/**
- * Get PandaCSS token path for a color name
- */
-export function getColorToken(colorName: ColorName): string {
-  return COLOR_TOKEN_MAP[colorName];
-}
