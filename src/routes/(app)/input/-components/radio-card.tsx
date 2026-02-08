@@ -17,7 +17,7 @@ function ColorPill({ label, name }: { label: string; name: ColorName }) {
       <span
         className={css({
           fontSize: "body",
-          color: "gray.500",
+          color: "gray.600",
           height: "20px",
           display: "flex",
           alignItems: "center",
@@ -34,8 +34,8 @@ function ColorPill({ label, name }: { label: string; name: ColorName }) {
       >
         <span
           className={css({
-            inlineSize: "24px",
-            blockSize: "24px",
+            inlineSize: "32px",
+            blockSize: "32px",
             borderRadius: "full",
             border: "1px solid",
             borderColor: "gray.200",
@@ -54,8 +54,8 @@ function SimpleColorPill({ name }: { name: ColorName }) {
     <div className={flex({ align: "center", gap: 1.5 })}>
       <span
         className={css({
-          inlineSize: "14px",
-          blockSize: "14px",
+          inlineSize: "24px",
+          blockSize: "24px",
           borderRadius: "full",
           border: "1px solid",
           borderColor: "gray.200",
@@ -88,11 +88,29 @@ export function RadioCard({ pattern }: { pattern: Pattern }) {
               borderColor: isChecked ? "primary.500" : "gray.300",
               borderRadius: "12px",
               cursor: "pointer",
-              transition: "all 0.2s ease-in-out",
+              transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
               backgroundColor: isChecked ? "primary.50" : "white",
               textAlign: "start",
+              boxShadow: isChecked
+                ? "0 4px 6px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.1)"
+                : "0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.06)",
               _hover: {
                 borderColor: isChecked ? "primary.600" : "gray.400",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.08), 0 8px 16px rgba(0, 0, 0, 0.1)",
+                transform: "translateY(-2px)",
+              },
+              _active: {
+                transform: "translateY(0)",
+                boxShadow: "0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.06)",
+              },
+              _focusVisible: {
+                outline: "2px solid",
+                outlineColor: "gray.600",
+                outlineOffset: "2px",
+              },
+              "@media (prefers-reduced-motion: reduce)": {
+                transition: "none",
+                transform: "none !important",
               },
             })}
           >
@@ -121,7 +139,12 @@ export function RadioCard({ pattern }: { pattern: Pattern }) {
                       position: "relative",
                     })}
                   >
-                    <Circle size={48} color="#10b981" fill="#10b981" />
+                    <Circle
+                      size={48}
+                      color="primary.500"
+                      fill="primary.500"
+                      className={css({ transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)" })}
+                    />
                     <div
                       className={css({
                         position: "absolute",
@@ -134,7 +157,13 @@ export function RadioCard({ pattern }: { pattern: Pattern }) {
                     </div>
                   </div>
                 ) : (
-                  <Circle size={48} className={css({ color: "gray.100" })} />
+                  <Circle
+                    size={48}
+                    className={css({
+                      color: "gray.100",
+                      transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                    })}
+                  />
                 )}
                 <span
                   className={css({
@@ -149,12 +178,13 @@ export function RadioCard({ pattern }: { pattern: Pattern }) {
 
               <div
                 className={css({
-                  fontSize: "caption",
-                  color: "gray.600",
-                  padding: "4px 8px",
+                  fontSize: "body",
+                  color: "gray.950",
+                  padding: "6px 10px",
                   backgroundColor: "gray.100",
                   borderRadius: "6px",
                   width: "fit-content",
+                  whiteSpace: "nowrap",
                 })}
               >
                 エネルギーが落ちる年: {pattern.energyDownYear}
@@ -168,7 +198,7 @@ export function RadioCard({ pattern }: { pattern: Pattern }) {
                 })}
               >
                 <div
-                  className={css({ fontSize: "smallest", color: "gray.500", fontWeight: "medium" })}
+                  className={css({ fontSize: "caption", color: "gray.700", fontWeight: "medium" })}
                 >
                   エネルギーUP色
                 </div>
@@ -199,7 +229,7 @@ export function RadioCard({ pattern }: { pattern: Pattern }) {
                   borderColor: "gray.200",
                 })}
               >
-                <span className={css({ fontSize: "smallest", color: "gray.500" })}>タブー色:</span>
+                <span className={css({ fontSize: "caption", color: "gray.700" })}>タブー色:</span>
                 <SimpleColorPill name={pattern.tabooColor} />
               </div>
             </div>
