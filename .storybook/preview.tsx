@@ -17,15 +17,9 @@ const preview: Preview = {
     a11y: {
       context: "body",
       config: {},
-
       options: {
         runOnly: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"],
       },
-
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: "todo",
     },
   },
   decorators: [
