@@ -1,23 +1,40 @@
-import { Button } from "@base-ui/react";
-import { Link } from "@tanstack/react-router";
+import { Button } from "@base-ui/react/button";
+import { RadioGroup } from "@base-ui/react/radio-group";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
+import * as v from "valibot";
 import { css } from "../../../../../styled-system/css";
 import { PATTERNS } from "../../../../constants/patterns";
 import { button } from "../../../../recipes/button.recipe";
-import type { Pattern } from "../../../../types/pattern";
+import { type Pattern, patternIdSchema } from "../../../../types/pattern";
+import { useAppForm } from "../-hooks/use-form";
+import { formSchema } from "../-schemas/form-schema";
+import { RadioCard } from "./radio-card";
 
 export function Page() {
-  const [selectedPattern, setSelectedPattern] = useState<Pattern | null>(null);
-  const [showNotification, setShowNotification] = useState(false);
+  const navigate = useNavigate();
+  const [showError, setShowError] = useState(false);
+
+  const form = useAppForm({
+    defaultValues: {
+      patternId: undefined as number | undefined,
+    },
+    validators: {
+      onChange: formSchema,
+    },
+  });
 
   const handleNext = () => {
-    if (selectedPattern) {
-      // navigate to /preview with patternId
-      window.location.href = `/preview?patternId=${selectedPattern.id}`;
+    const patternId = form.getFieldValue("patternId");
+    if (patternId !== undefined) {
+      setShowError(false);
+      navigate({
+        to: "/preview",
+        search: { patternId },
+      });
     } else {
-      setShowNotification(true);
-      setTimeout(() => setShowNotification(false), 3000);
+      setShowError(true);
     }
   };
 
@@ -58,13 +75,14 @@ export function Page() {
         </h1>
       </header>
 
-      {/* 通知 */}
-      {showNotification && (
+      {/* エラー通知 */}
+      {showError && (
         <div
           className={css({
             position: "fixed",
             top: "4",
             left: "50%",
+            transform: "translateX(-50%)",
             backgroundColor: "red.500",
             color: "white",
             padding: "3 6",
@@ -77,119 +95,97 @@ export function Page() {
         </div>
       )}
 
-      {/* パターン選択エリア */}
-      <section
-        className={css({
-          marginBottom: "6",
-          padding: "4",
-          backgroundColor: "white",
-          borderRadius: "lg",
-          boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
-        })}
-      >
-        {selectedPattern ? (
-          <div
+      {/* 選択状態表示エリア */}
+      <form.Subscribe selector={(state) => state.values.patternId}>
+        {(patternId) => (
+          <section
             className={css({
-              marginBottom: "4",
-              padding: "3",
-              backgroundColor: "primary",
-              color: "white",
-              borderRadius: "md",
-              display: "flex",
-              alignItems: "center",
-              gap: "2",
-            })}
-          >
-            <span className={css({ fontSize: "xl" })}>✓</span>
-            <span>
-              <span className={css({ fontWeight: "bold" })}>選択中:</span> パターン{" "}
-              {selectedPattern.id}
-            </span>
-          </div>
-        ) : (
-          <div
-            className={css({
-              marginBottom: "4",
+              marginBottom: "6",
               padding: "4",
-              backgroundColor: "gray.50",
-              color: "text.secondary",
-              borderRadius: "md",
-              textAlign: "center",
-              fontSize: "sm",
+              backgroundColor: "white",
+              borderRadius: "lg",
+              boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
             })}
           >
-            <p className={css({ marginBottom: "2", fontWeight: "medium" })}>
-              パターンが選択されていません
-            </p>
-            <p>下記のパターンボタンから選択してください</p>
-          </div>
-        )}
-
-        <div
-          className={css({
-            display: "grid",
-            gridTemplateColumns: {
-              base: "repeat(3, 1fr)",
-              sm: "repeat(4, 1fr)",
-              md: "repeat(6, 1fr)",
-            },
-            gap: "3",
-          })}
-        >
-          {PATTERNS.map((pattern) => {
-            const isSelected = selectedPattern?.id === pattern.id;
-            return (
-              <button
-                type="button"
-                key={pattern.id}
-                onClick={() => setSelectedPattern(pattern)}
+            {patternId !== undefined ? (
+              <div
                 className={css({
-                  position: "relative",
+                  marginBottom: "4",
                   padding: "3",
-                  border: "2px solid",
-                  borderColor: isSelected ? "primary" : "gray.200",
+                  backgroundColor: "primary",
+                  color: "white",
                   borderRadius: "md",
-                  backgroundColor: isSelected ? "primary" : "white",
-                  color: isSelected ? "white" : "text.primary",
-                  fontWeight: "medium",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  _hover: {
-                    borderColor: "primary",
-                    backgroundColor: isSelected ? "primary" : "gray.50",
-                  },
-                  _active: {
-                    transform: "scale(0.98)",
-                  },
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "2",
                 })}
               >
-                <span>パターン {pattern.id}</span>
-                {isSelected && (
-                  <span
+                <span className={css({ fontSize: "xl" })}>✓</span>
+                <span>
+                  <span className={css({ fontWeight: "bold" })}>選択中:</span> パターン {patternId}
+                </span>
+              </div>
+            ) : (
+              <div
+                className={css({
+                  marginBottom: "4",
+                  padding: "4",
+                  backgroundColor: "gray.50",
+                  color: "text.secondary",
+                  borderRadius: "md",
+                  textAlign: "center",
+                  fontSize: "sm",
+                })}
+              >
+                <p className={css({ marginBottom: "2", fontWeight: "medium" })}>
+                  パターンが選択されていません
+                </p>
+                <p>下記のパターンカードから選択してください</p>
+              </div>
+            )}
+
+            <form.Field name="patternId">
+              {({ state, handleChange }) => (
+                <fieldset
+                  className={css({
+                    border: "none",
+                    padding: 0,
+                    margin: 0,
+                  })}
+                >
+                  <legend className={css({ srOnly: true })}>パターンを選択してください</legend>
+                  <RadioGroup
+                    value={state.value !== undefined ? String(state.value) : ""}
+                    onValueChange={(value) => {
+                      if (value === "") {
+                        handleChange(undefined);
+                      } else {
+                        const numValue = Number(value);
+                        const parsedValue = v.parse(patternIdSchema, numValue);
+                        handleChange(parsedValue);
+                        setShowError(false);
+                      }
+                    }}
                     className={css({
-                      position: "absolute",
-                      top: "1",
-                      right: "1",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: "5",
-                      height: "5",
-                      backgroundColor: "white",
-                      color: "primary",
-                      borderRadius: "50%",
-                      fontSize: "xs",
-                      fontWeight: "bold",
+                      display: "grid",
+                      gridTemplateColumns: {
+                        base: "1fr",
+                        md: "repeat(2, 1fr)",
+                        lg: "repeat(3, 1fr)",
+                      },
+                      gap: 4,
                     })}
                   >
-                    ✓
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </section>
+                    {PATTERNS.map((pattern: Pattern) => (
+                      <RadioCard key={pattern.id} pattern={pattern} />
+                    ))}
+                  </RadioGroup>
+                </fieldset>
+              )}
+            </form.Field>
+          </section>
+        )}
+      </form.Subscribe>
 
       {/* 操作ボタンエリア */}
       <section
@@ -200,8 +196,13 @@ export function Page() {
         })}
       >
         <Button
+          type="button"
           onClick={handleNext}
-          className={button({ visual: "primary", size: "lg", fluid: false })}
+          className={button({
+            visual: "primary",
+            size: "lg",
+            fluid: false,
+          })}
         >
           <span>次へ</span>
           <ArrowRight size={20} />

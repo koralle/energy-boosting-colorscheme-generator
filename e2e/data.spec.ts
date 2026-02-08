@@ -5,7 +5,7 @@ async function openPreviewForPattern(page: Page, patternId: number) {
   await page.getByRole("link", { name: "鑑定書作成を開始する" }).click();
   await expect(page.getByRole("heading", { name: "パターンを選択" })).toBeVisible();
 
-  const patternButton = page.getByRole("button", {
+  const patternButton = page.getByRole("radio", {
     name: new RegExp(`^パターン ${patternId}$`),
   });
   await expect(async () => {

@@ -4,7 +4,7 @@ test("パターンを選択して次へを押したとき、プレビュー画�
   await page.goto("/");
   await page.getByRole("link", { name: "鑑定書作成を開始する" }).click();
 
-  const patternButton = page.getByRole("button", { name: /^パターン 1$/ });
+  const patternButton = page.getByRole("radio", { name: /^パターン 1$/ });
   await expect(async () => {
     await patternButton.click();
     await expect(page.getByText(/選択中:\s*パターン\s*1/)).toBeVisible({ timeout: 1000 });

@@ -7,23 +7,27 @@ test("入力画面を表示したとき、タッチターゲットが44px以上�
   const nextButton = page.getByRole("button", { name: "次へ" });
   await expect(nextButton).toBeVisible();
   const nextButtonBox = await nextButton.boundingBox();
-  expect(nextButtonBox).not.toBeNull();
-  expect(nextButtonBox!.width).toBeGreaterThanOrEqual(44);
-  expect(nextButtonBox!.height).toBeGreaterThanOrEqual(44);
+  if (!nextButtonBox) {
+    throw new Error("次へボタンのbounding boxを取得できませんでした");
+  }
+  expect(nextButtonBox.width).toBeGreaterThanOrEqual(44);
+  expect(nextButtonBox.height).toBeGreaterThanOrEqual(44);
 
-  const pattern1Button = page.getByRole("button", { name: /^パターン 1$/ });
+  const pattern1Button = page.getByRole("radio", { name: /^パターン 1$/ });
   await expect(pattern1Button).toBeVisible();
   const pattern1ButtonBox = await pattern1Button.boundingBox();
-  expect(pattern1ButtonBox).not.toBeNull();
-  expect(pattern1ButtonBox!.width).toBeGreaterThanOrEqual(44);
-  expect(pattern1ButtonBox!.height).toBeGreaterThanOrEqual(44);
+  if (!pattern1ButtonBox) {
+    throw new Error("パターン1カードのbounding boxを取得できませんでした");
+  }
+  expect(pattern1ButtonBox.width).toBeGreaterThanOrEqual(44);
+  expect(pattern1ButtonBox.height).toBeGreaterThanOrEqual(44);
 });
 
 test("プレビュー画面を開いたとき、手書き欄のラベルが表示されること", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("link", { name: "鑑定書作成を開始する" }).click();
 
-  const patternButton = page.getByRole("button", { name: /^パターン 2$/ });
+  const patternButton = page.getByRole("radio", { name: /^パターン 2$/ });
   await expect(async () => {
     await patternButton.click();
     await expect(page.getByText(/選択中:\s*パターン\s*2/)).toBeVisible({ timeout: 1000 });
