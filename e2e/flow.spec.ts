@@ -6,7 +6,7 @@ test("パターンを選択して次へを押したとき、プレビュー画�
 
   const patternButton = page.getByRole("radio", { name: /^パターン 1$/ });
   await expect(async () => {
-    await patternButton.click();
+    await expect(patternButton).toBeChecked({ timeout: 1000 });
     await expect(page.getByText(/選択中:\s*パターン\s*1/)).toBeVisible({ timeout: 1000 });
   }).toPass({ timeout: 10000 });
 

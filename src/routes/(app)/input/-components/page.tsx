@@ -2,7 +2,6 @@ import { Button } from "@base-ui/react/button";
 import { RadioGroup } from "@base-ui/react/radio-group";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { useState } from "react";
 import * as v from "valibot";
 import { css } from "../../../../../styled-system/css";
 import { PATTERNS } from "../../../../constants/patterns";
@@ -14,11 +13,10 @@ import { RadioCard } from "./radio-card";
 
 export function Page() {
   const navigate = useNavigate();
-  const [showError, setShowError] = useState(false);
 
   const form = useAppForm({
     defaultValues: {
-      patternId: undefined as number | undefined,
+      patternId: 1,
     },
     validators: {
       onChange: formSchema,
@@ -27,15 +25,10 @@ export function Page() {
 
   const handleNext = () => {
     const patternId = form.getFieldValue("patternId");
-    if (patternId !== undefined) {
-      setShowError(false);
-      navigate({
-        to: "/preview",
-        search: { patternId },
-      });
-    } else {
-      setShowError(true);
-    }
+    navigate({
+      to: "/preview",
+      search: { patternId },
+    });
   };
 
   return (
@@ -75,74 +68,31 @@ export function Page() {
         </h1>
       </header>
 
-      {/* エラー通知 */}
-      {showError && (
-        <div
-          className={css({
-            position: "fixed",
-            top: "4",
-            left: "50%",
-            transform: "translateX(-50%)",
-            backgroundColor: "red.500",
-            color: "white",
-            padding: "3 6",
-            borderRadius: "md",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-            zIndex: "50",
-          })}
-        >
-          パターンを選択してください
-        </div>
-      )}
-
       {/* 選択状態表示エリア */}
       <form.Subscribe selector={(state) => state.values.patternId}>
         {(patternId) => (
           <section
             className={css({
-              marginBottom: "6",
-              padding: "4",
-              backgroundColor: "white",
-              borderRadius: "lg",
-              boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+              marginBottom: 6,
             })}
           >
-            {patternId !== undefined ? (
-              <div
-                className={css({
-                  marginBottom: "4",
-                  padding: "3",
-                  backgroundColor: "primary",
-                  color: "white",
-                  borderRadius: "md",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "2",
-                })}
-              >
-                <span className={css({ fontSize: "xl" })}>✓</span>
-                <span>
-                  <span className={css({ fontWeight: "bold" })}>選択中:</span> パターン {patternId}
-                </span>
-              </div>
-            ) : (
-              <div
-                className={css({
-                  marginBottom: "4",
-                  padding: "4",
-                  backgroundColor: "gray.50",
-                  color: "text.secondary",
-                  borderRadius: "md",
-                  textAlign: "center",
-                  fontSize: "sm",
-                })}
-              >
-                <p className={css({ marginBottom: "2", fontWeight: "medium" })}>
-                  パターンが選択されていません
-                </p>
-                <p>下記のパターンカードから選択してください</p>
-              </div>
-            )}
+            <div
+              className={css({
+                marginBottom: "4",
+                padding: "3",
+                backgroundColor: "primary",
+                color: "white",
+                borderRadius: "md",
+                display: "flex",
+                alignItems: "center",
+                gap: "2",
+              })}
+            >
+              <span className={css({ fontSize: "xl" })}>✓</span>
+              <span>
+                <span className={css({ fontWeight: "bold" })}>選択中:</span> パターン {patternId}
+              </span>
+            </div>
 
             <form.Field name="patternId">
               {({ state, handleChange }) => (
@@ -155,16 +105,11 @@ export function Page() {
                 >
                   <legend className={css({ srOnly: true })}>パターンを選択してください</legend>
                   <RadioGroup
-                    value={state.value !== undefined ? String(state.value) : ""}
+                    value={String(state.value)}
                     onValueChange={(value) => {
-                      if (value === "") {
-                        handleChange(undefined);
-                      } else {
-                        const numValue = Number(value);
-                        const parsedValue = v.parse(patternIdSchema, numValue);
-                        handleChange(parsedValue);
-                        setShowError(false);
-                      }
+                      const numValue = Number(value);
+                      const parsedValue = v.parse(patternIdSchema, numValue);
+                      handleChange(parsedValue);
                     }}
                     className={css({
                       display: "grid",

@@ -1,17 +1,18 @@
 import { expect, test } from "@playwright/test";
 
-test("パターン未選択で次へを押したとき、バリデーションエラーが表示されること", async ({ page }) => {
+test("入力画面の初期状態で次へを押したとき、プレビュー画面に遷移すること", async ({ page }) => {
   await page.goto("/input");
 
-  const notice = page.getByText("パターンを選択してください", { exact: true });
+  const patternButton = page.getByRole("radio", { name: /^パターン 1$/ });
   const nextButton = page.getByRole("button", { name: "次へ" });
 
   await expect(async () => {
+    await expect(patternButton).toBeChecked({ timeout: 1000 });
     await nextButton.click();
-    await expect(notice).toBeVisible({ timeout: 1000 });
+    await expect(page).toHaveURL(/\/preview\?patternId=1(?:$|&)/, { timeout: 1000 });
   }).toPass({ timeout: 10000 });
 
-  await expect(page).toHaveURL(/\/input\/?$/);
+  await expect(page).toHaveURL(/\/preview\?patternId=1(?:$|&)/);
 });
 
 test("不正なpatternIdでプレビューを開いたとき、エラー画面が表示されること", async ({ page }) => {
