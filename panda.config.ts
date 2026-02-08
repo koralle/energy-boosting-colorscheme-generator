@@ -45,6 +45,22 @@ export default defineConfig({
             900: { value: "oklch(0.18 0.012 90)" },
             950: { value: "oklch(0.10 0.008 90)" },
           },
+          domain: {
+            pink: { value: "#FFB6C1" },
+            red: { value: "#E57373" },
+            wine: { value: "#BA68C8" },
+            yellow: { value: "#FFF176" },
+            yellowGreen: { value: "#DCEDC8" },
+            beige: { value: "#D7CCC8" },
+            brown: { value: "#A1887F" },
+            purple: { value: "#CE93D8" },
+            blue: { value: "#90CAF9" },
+            navyBlue: { value: "#5C6BC0" },
+            green: { value: "#A5D6A7" },
+            deepGreen: { value: "#66BB6A" },
+            black: { value: "#78909C" },
+            gray: { value: "#B0BEC5" },
+          },
         },
         // 8ポイントグリッドシステムに基づく基本スペース（8px単位）
         spacing: {

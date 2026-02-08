@@ -2,7 +2,7 @@ import { Radio } from "@base-ui/react/radio";
 import { Check, Circle } from "lucide-react";
 import { css } from "../../../../../styled-system/css";
 import { flex } from "../../../../../styled-system/patterns";
-import { getColorCode } from "../../../../constants/colors";
+import { getColorToken } from "../../../../constants/colors";
 import type { ColorName, Pattern } from "../../../../types/pattern";
 
 function ColorPill({ label, name }: { label: string; name: ColorName }) {
@@ -40,8 +40,8 @@ function ColorPill({ label, name }: { label: string; name: ColorName }) {
             border: "1px solid",
             borderColor: "gray.200",
             flexShrink: 0,
+            backgroundColor: getColorToken(name),
           })}
-          style={{ backgroundColor: getColorCode(name) }}
         />
         <span className={css({ fontSize: "body", fontWeight: "medium" })}>{name}</span>
       </div>
@@ -60,8 +60,8 @@ function SimpleColorPill({ name }: { name: ColorName }) {
           border: "1px solid",
           borderColor: "gray.200",
           flexShrink: 0,
+          backgroundColor: getColorToken(name),
         })}
-        style={{ backgroundColor: getColorCode(name) }}
       />
       <span className={css({ fontSize: "caption", fontWeight: "medium" })}>{name}</span>
     </div>
