@@ -12,6 +12,15 @@ updates:
       semver-minor-days: 7
       semver-patch-days: 7
     open-pull-requests-limit: 10
+    groups:
+      storybook:
+        patterns:
+          - "@storybook/*"
+          - "storybook"
+      vitest:
+        patterns:
+          - "@vitest/*"
+          - "vitest"
 
   # GitHub Actions
   - package-ecosystem: "github-actions"
