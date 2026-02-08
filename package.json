@@ -59,7 +59,7 @@
     "@vitest/coverage-v8": "4.0.18",
     "@vitest/ui": "4.0.17",
     "playwright": "1.57.0",
-    "storybook": "10.1.11",
+    "storybook": "10.2.3",
     "storybook-device-viewports": "0.1.2",
     "vite": "8.0.0-beta.11",
     "vitest": "4.0.18",
