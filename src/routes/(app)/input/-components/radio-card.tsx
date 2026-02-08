@@ -1,84 +1,25 @@
 import { Radio } from "@base-ui/react/radio";
 import { Check, Circle } from "lucide-react";
-import { css } from "../../../../../styled-system/css";
+import { css, sva } from "../../../../../styled-system/css";
 import { flex } from "../../../../../styled-system/patterns";
-import { getColorCode } from "../../../../constants/colors";
 import type { ColorName, Pattern } from "../../../../types/pattern";
+import { ColorBadge } from "./color-badge";
 
-interface ColorPillProps {
-  label: string
-  name: ColorName
-}
+const ENERGY_UP_COLOR_ITEMS: ReadonlyArray<{
+  key: keyof Pattern["energyUpColors"];
+  label: string;
+}> = [
+  { key: "myself", label: "自分色" },
+  { key: "motivation", label: "やる気色" },
+  { key: "mentalStability", label: "精神安定色" },
+  { key: "decision", label: "決断色" },
+  { key: "health", label: "健康色" },
+  { key: "economy", label: "経済色" },
+];
 
-function ColorPill({ label, name }: Readonly<ColorPillProps>) {
-  return (
-    <div
-      className={flex({
-        direction: "column",
-        gap: 1,
-        height: "100%",
-      })}
-    >
-      <span
-        className={css({
-          fontSize: "body",
-          color: "gray.600",
-          height: "20px",
-          display: "flex",
-          alignItems: "center",
-        })}
-      >
-        {label}
-      </span>
-      <div
-        className={flex({
-          align: "center",
-          gap: 2,
-          height: "28px",
-        })}
-      >
-        <span
-          className={css({
-            inlineSize: "32px",
-            blockSize: "32px",
-            borderRadius: "full",
-            border: "1px solid",
-            borderColor: "gray.200",
-            flexShrink: 0,
-          })}
-          style={{ backgroundColor: getColorCode(name) }}
-        />
-        <span className={css({ fontSize: "body", fontWeight: "medium" })}>{name}</span>
-      </div>
-    </div>
-  );
-}
-
-interface SimpleColorPillProps {
-  name: ColorName
-}
-
-function SimpleColorPill({ name }: Readonly<SimpleColorPillProps>) {
-  return (
-    <div className={flex({ align: "center", gap: 1.5 })}>
-      <span
-        className={css({
-          inlineSize: "24px",
-          blockSize: "24px",
-          borderRadius: "full",
-          border: "1px solid",
-          borderColor: "gray.200",
-          flexShrink: 0,
-        })}
-        style={{ backgroundColor: getColorCode(name) }}
-      />
-      <span className={css({ fontSize: "caption", fontWeight: "medium" })}>{name}</span>
-    </div>
-  );
-}
 
 interface RadioCardProps {
-  pattern: Pattern
+  pattern: Pattern;
 }
 
 export function RadioCard({ pattern }: Readonly<RadioCardProps>) {
@@ -224,26 +165,20 @@ export function RadioCard({ pattern }: Readonly<RadioCardProps>) {
                     flex: 1,
                   })}
                 >
-                  <ColorPill label="自分色" name={pattern.energyUpColors.myself} />
-                  <ColorPill label="やる気色" name={pattern.energyUpColors.motivation} />
-                  <ColorPill label="精神安定色" name={pattern.energyUpColors.mentalStability} />
-                  <ColorPill label="決断色" name={pattern.energyUpColors.decision} />
-                  <ColorPill label="健康色" name={pattern.energyUpColors.health} />
-                  <ColorPill label="経済色" name={pattern.energyUpColors.economy} />
+                  {ENERGY_UP_COLOR_ITEMS.map(({ key, label }) => (
+                    <ColorBadge key={key} label={label} name={pattern.energyUpColors[key]} />
+                  ))}
                 </div>
               </div>
 
               <div
                 className={flex({
-                  align: "center",
-                  gap: 2,
                   paddingTop: 2,
                   borderTop: "1px dashed",
                   borderColor: "gray.200",
                 })}
               >
-                <span className={css({ fontSize: "caption", color: "gray.700" })}>タブー色:</span>
-                <SimpleColorPill name={pattern.tabooColor} />
+                <ColorBadge label="タブー色" name={pattern.tabooColor} />
               </div>
             </div>
           </button>
