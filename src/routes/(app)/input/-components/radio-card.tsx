@@ -3,6 +3,7 @@ import { Check, Circle } from "lucide-react";
 import { css } from "../../../../../styled-system/css";
 import { flex } from "../../../../../styled-system/patterns";
 import type { Pattern } from "../../../../types/pattern";
+import { getColorCode, getColorLabel } from "../../../../constants/colors";
 import { ColorBadge } from "./color-badge";
 
 const ENERGY_UP_COLOR_ITEMS: ReadonlyArray<{
@@ -160,24 +161,36 @@ export function RadioCard({ pattern }: Readonly<RadioCardProps>) {
                     display: "grid",
                     gridTemplateColumns: "repeat(2, 1fr)",
                     gridTemplateRows: "repeat(3, 1fr)",
-                    gap: 2,
+                    gap: 4,
                     flex: 1,
                   })}
                 >
-                  {ENERGY_UP_COLOR_ITEMS.map(({ key, label }) => (
-                    <ColorBadge key={key} label={label} name={pattern.energyUpColors[key]} />
-                  ))}
+                  {ENERGY_UP_COLOR_ITEMS.map(({ key, label }) => {
+                    const colorKey = pattern.energyUpColors[key];
+                    return (
+                      <ColorBadge
+                        key={key}
+                        label={label}
+                        color={getColorCode(colorKey)}
+                        colorName={getColorLabel(colorKey)}
+                      />
+                    );
+                  })}
                 </div>
               </div>
 
               <div
                 className={flex({
-                  paddingTop: 2,
+                  paddingTop: 3,
                   borderTop: "1px dashed",
                   borderColor: "gray.200",
                 })}
               >
-                <ColorBadge label="タブー色" name={pattern.tabooColor} />
+                <ColorBadge
+                  label="タブー色"
+                  color={getColorCode(pattern.tabooColor)}
+                  colorName={getColorLabel(pattern.tabooColor)}
+                />
               </div>
             </div>
           </button>

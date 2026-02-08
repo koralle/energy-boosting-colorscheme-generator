@@ -1,14 +1,13 @@
 import { css } from "../../../../../styled-system/css/css";
 import { flex } from "../../../../../styled-system/patterns";
-import { getColorCode, getColorLabel } from "../../../../constants/colors";
-import type { ColorKey } from "../../../../types/pattern";
 
 interface ColorBadgeProps {
   label: string;
-  name: ColorKey;
+  color: string;
+  colorName: string;
 }
 
-export function ColorBadge({ label, name }: Readonly<ColorBadgeProps>) {
+export function ColorBadge({ label, color, colorName }: Readonly<ColorBadgeProps>) {
   return (
     <div
       className={flex({
@@ -43,11 +42,9 @@ export function ColorBadge({ label, name }: Readonly<ColorBadgeProps>) {
             borderColor: "gray.200",
             flexShrink: 0,
           })}
-          style={{ backgroundColor: getColorCode(name) }}
+          style={{ backgroundColor: color }}
         />
-        <span className={css({ fontSize: "body", fontWeight: "medium" })}>
-          {getColorLabel(name)}
-        </span>
+        <span className={css({ fontSize: "body", fontWeight: "medium" })}>{colorName}</span>
       </div>
     </div>
   );
