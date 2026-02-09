@@ -18,63 +18,7 @@ const ENERGY_UP_COLOR_ITEMS: ReadonlyArray<{
   { key: "decision", label: "決断色" },
   { key: "health", label: "健康色" },
   { key: "economy", label: "経済色" },
-];
-
-const RADIO_INDICATOR_HIDDEN_STYLES = {
-  display: "none",
-} as const;
-
-const CONTENT_COLUMN_STYLES = {
-  direction: "column",
-  gap: 3,
-  height: "100%",
-} as const;
-
-const HEADER_ROW_STYLES = {
-  align: "center",
-  gap: 3,
-} as const;
-
-const ENERGY_DOWN_YEAR_STYLES = {
-  fontSize: "body",
-  color: "gray.950",
-  padding: "6px 10px",
-  backgroundColor: "gray.100",
-  borderRadius: "6px",
-  width: "fit-content",
-  whiteSpace: "nowrap",
-} as const;
-
-const COLOR_LIST_COLUMN_STYLES = {
-  direction: "column",
-  gap: 2,
-  flex: 1,
-} as const;
-
-const ENERGY_UP_TITLE_STYLES = {
-  fontSize: "caption",
-  color: "gray.700",
-  fontWeight: "medium",
-} as const;
-
-const ENERGY_UP_GRID_STYLES = {
-  display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
-  gridTemplateRows: "repeat(3, 1fr)",
-  gap: 4,
-  flex: 1,
-} as const;
-
-const TABOO_DIVIDER_STYLES = {
-  paddingTop: 3,
-  borderTop: "1px dashed",
-  borderColor: "gray.200",
-} as const;
-
-const PATTERN_TITLE_STYLES = {
-  fontSize: "h4",
-  fontWeight: "bold",
-} as const;
+] as const;
 
 interface RadioIndicatorProps {
   checked: boolean;
@@ -142,14 +86,30 @@ function RadioCardComponent({ pattern }: Readonly<RadioCardProps>) {
             aria-label={`パターン ${pattern.id}`}
             className={radioCard({ checked: isChecked })}
           >
-            <Radio.Indicator className={css(RADIO_INDICATOR_HIDDEN_STYLES)} />
+            <Radio.Indicator
+              className={css({
+                display: "none",
+              })}
+            />
 
-            <div className={flex(CONTENT_COLUMN_STYLES)}>
-              <div className={flex(HEADER_ROW_STYLES)}>
+            <div
+              className={flex({
+                direction: "column",
+                gap: 3,
+                height: "100%",
+              })}
+            >
+              <div
+                className={flex({
+                  align: "center",
+                  gap: 3,
+                })}
+              >
                 <RadioIndicator checked={isChecked} />
                 <span
                   className={css({
-                    ...PATTERN_TITLE_STYLES,
+                    fontSize: "h4",
+                    fontWeight: "bold",
                     color: isChecked ? "primary.700" : "gray.800",
                   })}
                 >
@@ -157,13 +117,45 @@ function RadioCardComponent({ pattern }: Readonly<RadioCardProps>) {
                 </span>
               </div>
 
-              <div className={css(ENERGY_DOWN_YEAR_STYLES)}>
+              <div
+                className={css({
+                  fontSize: "body",
+                  color: "gray.950",
+                  padding: "6px 10px",
+                  backgroundColor: "gray.100",
+                  borderRadius: "6px",
+                  width: "fit-content",
+                  whiteSpace: "nowrap",
+                })}
+              >
                 エネルギーが落ちる年: {pattern.energyDownYear}
               </div>
 
-              <div className={flex(COLOR_LIST_COLUMN_STYLES)}>
-                <div className={css(ENERGY_UP_TITLE_STYLES)}>エネルギーUP色</div>
-                <div className={css(ENERGY_UP_GRID_STYLES)}>
+              <div
+                className={flex({
+                  direction: "column",
+                  gap: 2,
+                  flex: 1,
+                })}
+              >
+                <div
+                  className={css({
+                    fontSize: "caption",
+                    color: "gray.700",
+                    fontWeight: "medium",
+                  })}
+                >
+                  エネルギーUP色
+                </div>
+                <div
+                  className={css({
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, 1fr)",
+                    gridTemplateRows: "repeat(3, 1fr)",
+                    gap: 4,
+                    flex: 1,
+                  })}
+                >
                   {ENERGY_UP_COLOR_ITEMS.map(({ key, label }) => {
                     const colorKey = pattern.energyUpColors[key];
                     return (
@@ -178,7 +170,13 @@ function RadioCardComponent({ pattern }: Readonly<RadioCardProps>) {
                 </div>
               </div>
 
-              <div className={flex(TABOO_DIVIDER_STYLES)}>
+              <div
+                className={flex({
+                  paddingTop: 3,
+                  borderTop: "1px dashed",
+                  borderColor: "gray.200",
+                })}
+              >
                 <ColorBadge
                   label="タブー色"
                   color={getColorCode(pattern.tabooColor)}
