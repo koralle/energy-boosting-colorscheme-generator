@@ -1,6 +1,6 @@
 import { token } from "../../styled-system/tokens";
-import { ENERGY_COLOR_DEFINITIONS, ENERGY_COLOR_KEYS } from "./energy-colors";
 import type { ColorKey } from "../types/pattern";
+import { ENERGY_COLOR_DEFINITIONS, ENERGY_COLOR_KEYS } from "./energy-colors";
 
 /**
  * 色キーからカラーコードを取得するヘルパー関数
