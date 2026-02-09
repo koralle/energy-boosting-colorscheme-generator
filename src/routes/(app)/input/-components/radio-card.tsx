@@ -93,9 +93,11 @@ function RadioIndicator({ checked }: Readonly<RadioIndicatorProps>) {
       >
         <Circle
           size={48}
-          color="primary.500"
-          fill="primary.500"
-          className={css({ transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)" })}
+          className={css({
+            color: "green.500",
+            fill: "green.500",
+            transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+          })}
         />
         <div
           className={css({

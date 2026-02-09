@@ -54,6 +54,21 @@ export default defineConfig({
             900: { value: "oklch(0.18 0.012 90)" },
             950: { value: "oklch(0.10 0.008 90)" },
           },
+          green: {
+            // gold/gray と調和するグリーンスケール
+            // 色相142度、クロミナンスは中間部でピーク（0.11）
+            50: { value: "oklch(0.96 0.025 142)" },
+            100: { value: "oklch(0.91 0.06 142)" },
+            200: { value: "oklch(0.84 0.085 142)" },
+            300: { value: "oklch(0.76 0.10 142)" },
+            400: { value: "oklch(0.68 0.115 142)" },
+            500: { value: "oklch(0.61 0.095 142)" },
+            600: { value: "oklch(0.51 0.11 142)" },
+            700: { value: "oklch(0.44 0.105 142)" },
+            800: { value: "oklch(0.36 0.095 142)" },
+            900: { value: "oklch(0.28 0.075 142)" },
+            950: { value: "oklch(0.22 0.05 142)" },
+          },
         },
         // 8ポイントグリッドシステムに基づく基本スペース（8px単位）
         spacing: {
@@ -94,6 +109,29 @@ export default defineConfig({
         },
       },
       semanticTokens: {
+        colors: {
+          success: {
+            bg: {
+              DEFAULT: { value: "{colors.green.600}" },
+              hover: { value: "{colors.green.500}" },
+              active: { value: "{colors.green.700}" },
+              subtle: { value: "{colors.green.100}" },
+            },
+            border: {
+              DEFAULT: { value: "{colors.green.600}" },
+              hover: { value: "{colors.green.500}" },
+              strong: { value: "{colors.green.700}" },
+            },
+            text: {
+              DEFAULT: { value: "{colors.green.700}" },
+              inverse: { value: "{colors.green.50}" },
+              subtle: { value: "{colors.green.600}" },
+            },
+            fg: {
+              DEFAULT: { value: "{colors.green.600}" },
+            },
+          },
+        },
         spacing: {
           // 固定値の余白
           xxs: { value: "{spacing.1}" }, // 8px
