@@ -8,8 +8,8 @@ export default defineConfig({
     trace: "on-first-retry",
     screenshot: "only-on-failure",
     launchOptions: {
-      slowMo: 250
-    }
+      slowMo: 250,
+    },
   },
   workers: 4,
   reporter: "html",

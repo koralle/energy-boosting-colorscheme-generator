@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 import { Layout } from "../../../components/Layout";
 import { WithRouter } from "../../../test/with-router";
 import { Page } from "./-components/page";
-import { expect, userEvent, within } from 'storybook/test'
 
 const meta: Meta<typeof Page> = {
   title: "パターン選択画面",
@@ -18,10 +18,10 @@ export const Default: Story = {
       <Page onSubmitForm={() => Promise.resolve(void 0)} />
     </WithRouter>
   ),
-  play: async ({ canvasElement, step }) => {
-    const canvas = within(canvasElement)
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
 
-    const form = canvas.getByRole('form')
-    expect(form).toBeVisible()
-  }
+    const form = canvas.getByRole("form");
+    expect(form).toBeVisible();
+  },
 };

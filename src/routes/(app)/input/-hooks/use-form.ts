@@ -7,4 +7,3 @@ export const { useAppForm } = createFormHook({
   fieldComponents: {},
   formComponents: {},
 });
-
