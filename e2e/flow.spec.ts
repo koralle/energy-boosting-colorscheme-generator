@@ -17,7 +17,7 @@ import { expect, test } from "@playwright/test";
         });
         await patternButton.click();
 
-        const nextButton = page.getByRole("button", { name: "次へ" });
+        const nextButton = page.getByRole("button", { name: "プレビュー画面に移動" });
         await nextButton.click();
 
         await page.waitForURL(new RegExp(`/preview\\?patternId=${patternId}$`));

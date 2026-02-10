@@ -82,8 +82,8 @@ export function PatternSelectForm({ onSubmit }: Readonly<PatternSelectFormProps>
           </form.Field>
 
           <Button type="submit" className={button({ size: "lg" })}>
-            <span>次へ</span>
-            <ArrowRight size={20} />
+            <span>プレビュー画面に移動</span>
+            <ArrowRight size={20} strokeWidth={3} />
           </Button>
         </div>
       </form>
