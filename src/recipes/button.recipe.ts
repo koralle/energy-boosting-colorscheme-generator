@@ -2,8 +2,9 @@ import { cva } from "../../styled-system/css";
 
 export const button = cva({
   base: {
-    display: "inline flex",
+    display: "inline-flex",
     justifyContent: "center",
+    alignItems: "center",
     columnGap: 1,
     position: "relative",
     cursor: "pointer",

@@ -49,7 +49,7 @@ export function Page() {
         className={buttonRecipe({ visual: "primary", size: "lg" })}
       >
         <Plus size={20} />
-        <span className={css({ marginLeft: "8px" })}>鑑定書作成を開始する</span>
+        <span>鑑定書作成を開始する</span>
       </Button>
     </div>
   );

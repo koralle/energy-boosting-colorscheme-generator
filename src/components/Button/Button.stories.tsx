@@ -82,15 +82,15 @@ export const WithIconLeft: Story = {
     >
       <Button className={buttonRecipe({ visual: "primary", size: "sm" })}>
         <Download size={16} />
-        <span className={css({ marginLeft: "8px" })}>ダウンロード</span>
+        <span>ダウンロード</span>
       </Button>
       <Button className={buttonRecipe({ visual: "primary", size: "lg" })}>
         <User size={20} />
-        <span className={css({ marginLeft: "8px" })}>マイページ</span>
+        <span>マイページ</span>
       </Button>
       <Button className={buttonRecipe({ visual: "secondary", size: "sm" })}>
         <Share2 size={16} />
-        <span className={css({ marginLeft: "8px" })}>シェア</span>
+        <span>シェア</span>
       </Button>
     </div>
   ),
@@ -107,15 +107,15 @@ export const WithIconRight: Story = {
       })}
     >
       <Button className={buttonRecipe({ visual: "primary", size: "sm" })}>
-        <span className={css({ marginRight: "8px" })}>次へ</span>
+        <span>次へ</span>
         <ChevronRight size={16} />
       </Button>
       <Button className={buttonRecipe({ visual: "primary", size: "lg" })}>
-        <span className={css({ marginRight: "8px" })}>詳細を見る</span>
+        <span>詳細を見る</span>
         <ChevronRight size={20} />
       </Button>
       <Button className={buttonRecipe({ visual: "secondary", size: "sm" })}>
-        <span className={css({ marginRight: "8px" })}>もっと見る</span>
+        <span>もっと見る</span>
         <ChevronRight size={16} />
       </Button>
     </div>

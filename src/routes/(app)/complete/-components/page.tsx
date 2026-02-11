@@ -84,7 +84,9 @@ export function Page() {
             textAlign: "center",
           })}
         >
-          鑑定書の雛形が準備できました。<br />手書き箇所をご記入の上、お客様にお渡しください。
+          鑑定書の雛形が準備できました。
+          <br />
+          手書き箇所をご記入の上、お客様にお渡しください。
         </p>
       </div>
 
@@ -100,7 +102,7 @@ export function Page() {
           }
         >
           <Home />
-          <span className={css({ display: 'flex', flexDirection: "column", justifyContent: 'start', alignItems: 'center' })}>ホームに戻る</span>
+          <span>ホームに戻る</span>
         </Button>
       </div>
     </div>
