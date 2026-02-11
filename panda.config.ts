@@ -104,7 +104,7 @@ export default defineConfig({
           value: {
             fontSize: "{fontSizes.h5}",
             fontWeight: "700",
-            lineHeight: "1.4",
+            lineHeight: "1.5",
           },
         },
       },
