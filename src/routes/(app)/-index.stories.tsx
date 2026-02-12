@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Layout } from "../../components/Layout";
 import { WithRouter } from "../../test/with-router";
+import { Layout } from "./-layout";
 import { Page } from "./-page";
 
 const meta: Meta<typeof Page> = {

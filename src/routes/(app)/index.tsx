@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Layout } from "../../components/Layout";
+import { Layout } from "./-layout";
 import { Page } from "./-page";
 
 export const Route = createFileRoute("/(app)/")({
