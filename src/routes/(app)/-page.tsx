@@ -106,6 +106,7 @@ export function Page() {
             color: "primary.700",
             display: "grid",
             placeItems: "center",
+            marginInline: "auto",
           })}
           aria-hidden="true"
         >
