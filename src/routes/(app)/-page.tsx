@@ -27,10 +27,9 @@ type StepItem = (typeof STEPS)[number];
 
 interface StepCardProps {
   step: StepItem;
-  stepNumber: number;
 }
 
-function StepCard({ step, stepNumber }: Readonly<StepCardProps>) {
+function StepCard({ step }: Readonly<StepCardProps>) {
   return (
     <div
       className={css({
@@ -42,6 +41,13 @@ function StepCard({ step, stepNumber }: Readonly<StepCardProps>) {
         paddingY: "3",
         display: "grid",
         rowGap: "2",
+        transition: "box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out",
+        "@media (any-hover: hover)": {
+          _hover: {
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+            transform: "translateY(-2px)",
+          },
+        },
       })}
     >
       <div className={flex({ align: "center", gap: "2" })}>
@@ -59,7 +65,7 @@ function StepCard({ step, stepNumber }: Readonly<StepCardProps>) {
           })}
           aria-hidden="true"
         >
-          {stepNumber}
+          {step.id}
         </span>
         <h3 className={css({ fontSize: "body", fontWeight: "bold", color: "gray.900" })}>
           {step.title}
@@ -72,7 +78,8 @@ function StepCard({ step, stepNumber }: Readonly<StepCardProps>) {
 
 export function Page() {
   return (
-    <div
+    <main
+      aria-labelledby="home-page-title"
       className={css({
         maxInlineSize: "1000px",
         inlineSize: "fit-content",
@@ -86,8 +93,8 @@ export function Page() {
       <div
         className={css({
           display: "grid",
-          placeItems: "center",
-          rowGap: "4",
+          placeItems: { base: "start", md: "center" },
+          rowGap: "3",
         })}
       >
         <div
@@ -106,30 +113,72 @@ export function Page() {
         </div>
 
         <h1
+          id="home-page-title"
           className={css({
             fontSize: "h1",
             fontWeight: "bold",
             color: "gray.800",
-            textAlign: "center",
+            textAlign: { base: "left", md: "center" },
           })}
         >
           エネルギーUP色鑑定書作成ツール
         </h1>
-        <p
+        <div
           className={css({
-            fontSize: "body",
-            color: "text.secondary",
-            textAlign: "center",
+            display: "grid",
+            rowGap: "2",
             maxInlineSize: "600px",
-            marginInline: "auto",
+            "@media (min-width: 768px)": {
+              marginInline: "auto",
+            },
           })}
         >
-          お客様の鑑定パターンに合わせて、鑑定書を作成します。パターン選択から印刷まで、
-          3ステップで簡単に作成できます。
-        </p>
+          <p
+            id="home-hero-description"
+            className={css({
+              fontSize: "body",
+              color: "text.secondary",
+              lineHeight: "relaxed",
+            })}
+          >
+            お客様の鑑定パターンに合わせて、鑑定書を作成します。
+          </p>
+          <p
+            id="home-hero-subdescription"
+            className={css({
+              fontSize: "sm",
+              color: "text.secondary",
+              lineHeight: "relaxed",
+            })}
+          >
+            パターン選択から印刷まで、3ステップで簡単に作成できます。
+          </p>
+        </div>
       </div>
 
-      <section aria-labelledby="home-steps-heading" className={css({ inlineSize: "full" })}>
+      <div
+        className={flex({
+          justify: "center",
+          marginTop: { base: "6", md: "12" },
+        })}
+      >
+        <Button
+          render={<Link to="/input" />}
+          aria-describedby="home-hero-description home-hero-subdescription"
+          className={button({ visual: "primary", size: "lg", fluid: false })}
+        >
+          <span>鑑定書を作成する</span>
+          <ArrowRight size={20} aria-hidden="true" />
+        </Button>
+      </div>
+
+      <section
+        aria-labelledby="home-steps-heading"
+        className={css({
+          inlineSize: "full",
+          marginTop: { base: "8", md: "10" },
+        })}
+      >
         <h2 id="home-steps-heading" className={css({ srOnly: true })}>
           作成ステップ
         </h2>
@@ -145,21 +194,11 @@ export function Page() {
         >
           {STEPS.map((step) => (
             <li key={step.id}>
-              <StepCard step={step} stepNumber={step.id} />
+              <StepCard step={step} />
             </li>
           ))}
         </ol>
       </section>
-
-      <div className={flex({ justify: "center" })}>
-        <Button
-          render={<Link to="/input" />}
-          className={button({ visual: "primary", size: "lg", fluid: false })}
-        >
-          <span>鑑定書を作成する</span>
-          <ArrowRight size={20} aria-hidden="true" />
-        </Button>
-      </div>
-    </div>
+    </main>
   );
 }
